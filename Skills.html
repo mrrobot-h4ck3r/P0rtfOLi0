@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
     <title>Skills - Ankush | Cybersecurity Professional</title>
     <style>
         :root {
@@ -13,17 +16,20 @@
             --text-light: #ededed;
             --card-bg: rgba(8, 27, 41, 0.9);
         }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Roboto', sans-serif;
         }
+
         body {
             background: var(--bg-dark);
             color: var(--text-light);
             line-height: 1.6;
         }
+
         .header {
             position: fixed;
             top: 0;
@@ -37,6 +43,7 @@
             z-index: 100;
             backdrop-filter: blur(5px);
         }
+
         .logo {
             font-size: 25px;
             color: white;
@@ -44,6 +51,7 @@
             font-weight: 600;
             font-family: 'JetBrains Mono', monospace;
         }
+
         .navbar a {
             font-size: 18px;
             color: white;
@@ -53,9 +61,12 @@
             transition: 0.3s;
             position: relative;
         }
-        .navbar a:hover, .navbar a.active {
+
+        .navbar a:hover,
+        .navbar a.active {
             color: var(--accent-blue);
         }
+
         .navbar a::after {
             content: '';
             position: absolute;
@@ -66,14 +77,17 @@
             left: 0;
             transition: 0.3s;
         }
+
         .navbar a:hover::after {
             width: 100%;
         }
+
         .skills-section {
             min-height: 100vh;
             padding: 120px 10% 80px;
             background: linear-gradient(rgba(8, 27, 41, 0.9), rgba(8, 27, 41, 0.95)), url('cyber-bg.jpg') no-repeat center/cover;
         }
+
         .section-title {
             font-size: 2.5rem;
             margin-bottom: 2rem;
@@ -82,6 +96,7 @@
             position: relative;
             display: inline-block;
         }
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -91,12 +106,14 @@
             bottom: -10px;
             left: 0;
         }
+
         .skills-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
+
         .skill-category {
             background: var(--card-bg);
             border-radius: 8px;
@@ -105,9 +122,11 @@
             border-top: 3px solid var(--accent-blue);
             transition: transform 0.3s;
         }
+
         .skill-category:hover {
             transform: translateY(-10px);
         }
+
         .category-title {
             font-size: 1.5rem;
             margin-bottom: 20px;
@@ -115,22 +134,27 @@
             display: flex;
             align-items: center;
         }
+
         .category-title i {
             margin-right: 10px;
             font-size: 1.2rem;
         }
+
         .skills-list {
             list-style: none;
         }
+
         .skill-item {
             margin-bottom: 15px;
             display: flex;
             align-items: center;
         }
+
         .skill-name {
             flex: 1;
             font-weight: 500;
         }
+
         .skill-level {
             width: 100px;
             height: 6px;
@@ -139,17 +163,20 @@
             overflow: hidden;
             margin-left: 15px;
         }
+
         .skill-progress {
             height: 100%;
             background: var(--accent-blue);
             border-radius: 3px;
         }
+
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             gap: 15px;
             margin-top: 20px;
         }
+
         .tool-card {
             background: rgba(0, 171, 240, 0.1);
             border: 1px solid rgba(0, 171, 240, 0.3);
@@ -158,35 +185,159 @@
             text-align: center;
             transition: all 0.3s;
         }
+
         .tool-card:hover {
             background: rgba(0, 171, 240, 0.2);
             transform: scale(1.05);
         }
+
         .tool-icon {
             font-size: 2rem;
             margin-bottom: 10px;
             color: var(--accent-blue);
         }
+
         .tool-name {
             font-size: 0.9rem;
             font-family: 'JetBrains Mono', monospace;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         .skill-category {
             animation: fadeIn 0.8s ease forwards;
         }
-        .skill-category:nth-child(1) { animation-delay: 0.1s; }
-        .skill-category:nth-child(2) { animation-delay: 0.3s; }
-        .skill-category:nth-child(3) { animation-delay: 0.5s; }
-        .skill-category:nth-child(4) { animation-delay: 0.7s; }
+
+        .skill-category:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .skill-category:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .skill-category:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .skill-category:nth-child(4) {
+            animation-delay: 0.7s;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            z-index: 101;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            .skills-section {
+                padding: 120px 5% 80px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .header {
+                padding: 20px 5%;
+            }
+
+            .navbar a {
+                margin-left: 20px;
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(8, 27, 41, 0.95);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.5s ease;
+                z-index: 100;
+                border-left: 1px solid #00abf0;
+            }
+
+            .navbar.active {
+                right: 0;
+            }
+
+            .navbar a {
+                margin: 15px 0;
+                font-size: 18px;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skill-category {
+                padding: 20px;
+            }
+
+            .category-title {
+                font-size: 1.3rem;
+            }
+
+            .tool-card {
+                padding: 10px 5px;
+            }
+
+            .tool-icon {
+                font-size: 1.5rem;
+            }
+
+            .tool-name {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
+
 <body>
     <header class="header">
         <a href="index.html" class="logo">ankush@portfolio:~$</a>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
         <nav class="navbar">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
@@ -199,7 +350,7 @@
     <section class="skills-section">
         <div class="container">
             <h1 class="section-title">My Cybersecurity Skills</h1>
-            
+
             <div class="skills-container">
                 <!-- Penetration Testing -->
                 <div class="skill-category">
@@ -224,7 +375,7 @@
                             </div>
                         </li>
                     </ul>
-                    
+
                     <h3 style="margin: 20px 0 10px; color: var(--accent-blue);">Tools</h3>
                     <div class="tools-grid">
                         <div class="tool-card">
@@ -241,7 +392,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Vulnerability Assessment -->
                 <div class="skill-category">
                     <h2 class="category-title"><i class="fas fa-search"></i> Vulnerability Assessment</h2>
@@ -265,7 +416,7 @@
                             </div>
                         </li>
                     </ul>
-                    
+
                     <h3 style="margin: 20px 0 10px; color: var(--accent-blue);">Tools</h3>
                     <div class="tools-grid">
                         <div class="tool-card">
@@ -282,7 +433,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Digital Forensics -->
                 <div class="skill-category">
                     <h2 class="category-title"><i class="fas fa-laptop-code"></i> Digital Forensics</h2>
@@ -306,7 +457,7 @@
                             </div>
                         </li>
                     </ul>
-                    
+
                     <h3 style="margin: 20px 0 10px; color: var(--accent-blue);">Tools</h3>
                     <div class="tools-grid">
                         <div class="tool-card">
@@ -323,7 +474,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Core Skills -->
                 <div class="skill-category">
                     <h2 class="category-title"><i class="fas fa-cogs"></i> Core Competencies</h2>
@@ -353,7 +504,7 @@
                             </div>
                         </li>
                     </ul>
-                    
+
                     <h3 style="margin: 20px 0 10px; color: var(--accent-blue);">Technologies</h3>
                     <div class="tools-grid">
                         <div class="tool-card">
@@ -373,5 +524,23 @@
             </div>
         </div>
     </section>
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navbar = document.querySelector('.navbar');
+
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('.navbar a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('active');
+            });
+        });
+    </script>
 </body>
+
 </html>
