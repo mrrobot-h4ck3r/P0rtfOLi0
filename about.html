@@ -23,13 +23,14 @@
             background: var(--bg-dark);
             color: var(--text-light);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 20px 10%;
+            padding: 20px 5%;
             background: transparent;
             display: flex;
             justify-content: space-between;
@@ -71,7 +72,7 @@
         }
         .about-section {
             min-height: 100vh;
-            padding: 120px 10% 80px;
+            padding: 120px 5% 80px;
             display: flex;
             align-items: center;
             background: linear-gradient(rgba(8, 27, 41, 0.9), rgba(8, 27, 41, 0.95)), url('cyber-bg.jpg') no-repeat center/cover;
@@ -79,6 +80,7 @@
         .about-container {
             max-width: 800px;
             margin: 0 auto;
+            width: 100%;
         }
         .section-title {
             font-size: 2.5rem;
@@ -182,11 +184,140 @@
         .card, .internship-highlight {
             animation: fadeIn 0.8s ease forwards;
         }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .menu-toggle i {
+            font-size: 28px;
+            color: #fff;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            .about-container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .header {
+                padding: 15px 5%;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .card, .internship-highlight {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--bg-dark);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: 0.5s;
+                z-index: 100;
+                border-left: 1px solid var(--accent-blue);
+            }
+            
+            .navbar.active {
+                right: 0;
+            }
+            
+            .navbar a {
+                margin: 15px 0;
+                font-size: 20px;
+                margin-left: 0;
+            }
+            
+            .about-section {
+                padding-top: 100px;
+                padding-bottom: 60px;
+                min-height: auto;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .connect-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+            
+            .card, .internship-highlight {
+                padding: 15px;
+            }
+            
+            .experience-list li {
+                font-size: 0.95rem;
+            }
+            
+            .tech-tag {
+                font-size: 0.8rem;
+                padding: 4px 8px;
+            }
+            
+            .connect-btn {
+                padding: 10px 20px;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .logo {
+                font-size: 18px;
+            }
+            
+            .navbar {
+                width: 80%;
+            }
+            
+            .experience-list li::before {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
     <header class="header">
         <a href="index.html" class="logo">ankush@portfolio:~$</a>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
         <nav class="navbar">
             <a href="index.html">Home</a>
             <a href="#" class="active">About</a>
@@ -241,5 +372,23 @@
             </a>
         </div>
     </section>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navbar = document.querySelector('.navbar');
+        
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('.navbar a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
