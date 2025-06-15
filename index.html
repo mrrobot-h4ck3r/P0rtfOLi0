@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Ankush | Security Researcher</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background: #081b29;
+            color: #ededed;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10%;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            position: relative;
+            font-size: 25px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: #081b29;
+            animation: showRight 1s ease forwards;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes showRight {
+            100% {
+                width: 0;
+            }
+        }
+
+        .navbar a {
+            font-size: 18px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 35px;
+            transition: .3s;
+            position: relative;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: #00abf0;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #00abf0;
+            bottom: -5px;
+            left: 0;
+            transition: .3s;
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        .home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+        }
+
+        .home-content {
+            max-width: 600px;
+        }
+
+        .home-content h1 {
+            position: relative;
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .home-content h1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: #081b29;
+            animation: showRight 1s ease forwards;
+            animation-delay: 0.7s;
+        }
+
+        .home-content h3 {
+            position: relative;
+            font-size: 32px;
+            font-weight: 700;
+            color: #00abf0;
+            margin: 15px 0;
+        }
+
+        .home-content h3::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: #081b29;
+            animation: showRight 1s ease forwards;
+            animation-delay: 0.7s;
+        }
+
+        .home-content p {
+            position: relative;
+            font-size: 16px;
+            margin: 20px 0 40px;
+            line-height: 1.6;
+        }
+
+        .home-content p::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: #081b29;
+            animation: showRight 1s ease forwards;
+            animation-delay: 0.7s;
+        }
+
+        .home-sci {
+            position: absolute;
+            bottom: 40px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .home-sci::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: #081b29;
+            z-index: 2;
+            animation: showRight 1s ease forwards;
+            animation-delay: 0.7s;
+        }
+
+        .home-sci a {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid #00abf0;
+            border-radius: 50%;
+            font-size: 20px;
+            color: #00abf0;
+            text-decoration: none;
+            z-index: 1;
+            overflow: hidden;
+            transition: .5s;
+        }
+
+        .home-sci a:hover {
+            color: #081b29;
+        }
+
+        .home-sci a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: #00abf0;
+            z-index: -1;
+            transition: .5s;
+        }
+
+        .home-sci a:hover::before {
+            width: 100%;
+        }
+
+        .home-img {
+            position: absolute;
+            right: 30px;
+            max-height: 80vh;
+            max-width: 40%;
+            overflow: hidden;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+            border: 2px solid #00abf0;
+            box-shadow:
+                0 0 10px rgba(0, 171, 240, 0.5),
+                0 0 20px rgba(0, 171, 240, 0.3),
+                inset 0 0 10px rgba(0, 171, 240, 0.3);
+            padding: 5px;
+            background: rgba(0, 171, 240, 0.1);
+        }
+
+        .home-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: #081b29;
+            animation: showRight 1s ease forwards;
+            animation-delay: 0.7s;
+            z-index: 2;
+        }
+
+        .home-img::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 2px solid transparent;
+            border-image: linear-gradient(45deg, #00abf0, #081b29, #00abf0);
+            border-image-slice: 1;
+            border-radius: 10px;
+            z-index: -1;
+            animation: borderPulse 4s linear infinite;
+        }
+
+        .home-img img {
+            width: 100%;
+            height: 528px;
+            display: block;
+            transition: all 0.5s ease;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .home-img:hover img {
+            opacity: 0.8;
+            transform: scale(1.02);
+        }
+
+        .home-img:hover {
+            box-shadow:
+                0 0 15px rgba(0, 171, 240, 0.8),
+                0 0 25px rgba(0, 171, 240, 0.5),
+                inset 0 0 15px rgba(0, 171, 240, 0.5);
+        }
+
+        .home-content .btn-box {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            width: 345px;
+            height: 50px;
+            background-color: transparent;
+        }
+
+        .home-content .btn-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: #081b29;
+            z-index: 2;
+            animation: showRight 1s ease forwards;
+            animation-delay: 1.9s;
+        }
+
+        .btn-box a {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 100%;
+            border: 2px solid #00abf0;
+            border-radius: 8px;
+            font-size: 19px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            z-index: 1;
+            overflow: hidden;
+            transition: .5s;
+        }
+
+        .btn-box a {
+            background: #00abf0;
+            color: #081b29;
+        }
+
+        .btn-box a:nth-child(2) {
+            background: transparent;
+            color: #00abf0;
+        }
+
+        .btn-box a:hover {
+            color: #00abf0;
+        }
+
+        .btn-box a:nth-child(2):hover {
+            color: #081b29;
+        }
+
+        .btn-box a:nth-child(2)::before {
+            background: #00abf0;
+        }
+
+        .btn-box a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: #081b29;
+            z-index: -1;
+            transition: .5s;
+        }
+
+        .btn-box a:hover::before {
+            width: 100%;
+        }
+
+        @keyframes borderPulse {
+            0% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .home {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 100px;
+            }
+
+            .home-content {
+                max-width: 100%;
+            }
+
+            .home-content h1 {
+                font-size: 42px;
+            }
+
+            .home-content h3 {
+                font-size: 28px;
+            }
+
+            .btn-box {
+                width: 100%;
+                flex-direction: column;
+                height: auto;
+                gap: 15px;
+            }
+
+            .btn-box a {
+                width: 100%;
+            }
+
+            .home-img {
+                position: relative;
+                right: auto;
+                max-width: 100%;
+                margin-top: 40px;
+            }
+
+            .home-sci {
+                position: relative;
+                bottom: auto;
+                justify-content: center;
+                margin: 40px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="header">
+        <a href="#" class="logo">ankush@portfolio:~$</a>
+        <nav class="navbar">
+            <a href="#" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="Education.html">Education</a>
+            <a href="Skills.html">Skills</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section class="home">
+        <div class="home-content">
+            <h1>Hi, I'm Ankush</h1>
+            <h3>Security Researcher</h3>
+            <p>A Junior Security Researcher with an Ethical mindset, Currently working for Cyber safety and cyber crime
+                awareness. I have hands-on experience with Linux, Network Security, Web Security, and tools like Burp
+                Suite, OWASP ZAP, Acunetix, Nessus, Nmap, Nikto, Metasploit, and other open-source tools.</p>
+            <div class="btn-box">
+                <a href="contact.html">Hire Me</a>
+                <a href="contact.html">Let's Talk</a>
+            </div>
+            <div class="home-sci">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/mrrobot-h4ck3r"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.twitter.com/mrrobot_h4ck3r"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/mrrobot_h4ck3r"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/mrrobot-h4ck3r"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="https://t.me/mrrobot_h4ck3r"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+
+        <!-- Image Container -->
+        <div class="home-img">
+            <img src="ssss.jpg" alt="Ankush - Security Researcher">
+        </div>
+    </section>
+</body>
+
+</html>
