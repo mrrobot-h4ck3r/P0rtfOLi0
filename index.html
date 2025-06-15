@@ -19,6 +19,7 @@
         body {
             background: #081b29;
             color: #ededed;
+            overflow-x: hidden;
         }
 
         .header {
@@ -26,7 +27,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 20px 10%;
+            padding: 20px 5%;
             background: transparent;
             display: flex;
             justify-content: space-between;
@@ -95,7 +96,7 @@
             height: 100vh;
             display: flex;
             align-items: center;
-            padding: 0 10%;
+            padding: 0 5%;
             position: relative;
         }
 
@@ -377,15 +378,84 @@
             }
         }
 
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .menu-toggle i {
+            font-size: 28px;
+            color: #fff;
+        }
+
+        @media (max-width: 1200px) {
+            .home-img {
+                max-width: 45%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .header {
+                padding: 15px 5%;
+            }
+            
+            .home-img {
+                max-width: 50%;
+                right: 20px;
+            }
+            
+            .home-content h1 {
+                font-size: 48px;
+            }
+            
+            .home-content h3 {
+                font-size: 28px;
+            }
+        }
+
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: #081b29;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: 0.5s;
+                z-index: 100;
+                border-left: 1px solid #00abf0;
+            }
+            
+            .navbar.active {
+                right: 0;
+            }
+            
+            .navbar a {
+                margin: 15px 0;
+                font-size: 20px;
+            }
+            
             .home {
                 flex-direction: column;
                 text-align: center;
                 padding-top: 100px;
+                height: auto;
+                padding-bottom: 60px;
             }
 
             .home-content {
                 max-width: 100%;
+                margin-top: 60px;
             }
 
             .home-content h1 {
@@ -393,14 +463,15 @@
             }
 
             .home-content h3 {
-                font-size: 28px;
+                font-size: 24px;
             }
 
-            .btn-box {
+            .home-content .btn-box {
                 width: 100%;
                 flex-direction: column;
                 height: auto;
                 gap: 15px;
+                margin-bottom: 20px;
             }
 
             .btn-box a {
@@ -412,6 +483,11 @@
                 right: auto;
                 max-width: 100%;
                 margin-top: 40px;
+                max-height: none;
+            }
+
+            .home-img img {
+                height: auto;
             }
 
             .home-sci {
@@ -419,6 +495,54 @@
                 bottom: auto;
                 justify-content: center;
                 margin: 40px 0;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .home-content h1 {
+                font-size: 36px;
+            }
+            
+            .home-content h3 {
+                font-size: 22px;
+            }
+            
+            .home-content p {
+                font-size: 15px;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+            
+            .btn-box a {
+                font-size: 16px;
+            }
+            
+            .home-sci {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .home-sci a {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .home-content h1 {
+                font-size: 32px;
+            }
+            
+            .home-content h3 {
+                font-size: 20px;
+            }
+            
+            .logo {
+                font-size: 18px;
             }
         }
     </style>
@@ -428,6 +552,9 @@
     <!-- Navbar -->
     <header class="header">
         <a href="#" class="logo">ankush@portfolio:~$</a>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
         <nav class="navbar">
             <a href="#" class="active">Home</a>
             <a href="about.html">About</a>
@@ -465,6 +592,24 @@
             <img src="ssss.jpg" alt="Ankush - Security Researcher">
         </div>
     </section>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navbar = document.querySelector('.navbar');
+        
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('.navbar a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 
 </html>
